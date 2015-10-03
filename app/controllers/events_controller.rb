@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
- 
 
   def index
     @events = Event.all
@@ -13,13 +12,14 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event = Event.find(params[:id])
+    render :show
   end
 
   def create
     @event = Event.create(event_params)
     redirect_to '/events'
   end
-
 
   def edit
   end
@@ -33,7 +33,7 @@ class EventsController < ApplicationController
     private
 
   def event_params
-    params.require(:library).permit(:name, :floor_count, :floor_area)
+    params.require(:library).permit(:name, :address, :start_date, :start_time, :max_headcount, :current_headcount, :description)
   end
 
 end

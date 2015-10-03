@@ -4,8 +4,9 @@ class User < ActiveRecord::Base
 	belongs_to :cities
 
 	has_secure_password
-	validates :first_name, :last_name, :email, :password, :password_confirmation, presence: true
-		validates :email, uniqueness: true
+	validates :email, :password, presence: true
+	validates :email, uniqueness: true
+	validates_confirmation_of :password
 
 
   def self.confirm(params)

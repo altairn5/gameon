@@ -2,12 +2,9 @@ Rails.application.routes.draw do
  
   root to: "sites#index"
 
-  get 'sessions/new'
-
-  get 'sessions/create'
-
-  get 'sessions/destroy'
-
+  get '/sessions/new', to: 'sessions#new'
+  post '/sessions', to: 'sessions#create'
+  delete '/sessions', to: "sessions#destroy"
 
     resources :users
     resources :cities do
