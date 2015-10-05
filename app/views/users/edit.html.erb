@@ -1,2 +1,11 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h1>Edit Your Profile </h1>
+<%=form_for @user do |f|%>
+<%=f.text_field :first_name, placeholder: "First Name"%><br>
+<%=f.text_field :last_name, placeholder: "Last Name"%><br>
+<%=f.text_field :email, placeholder: "e-mail"%><br>
+<%=f.password_field :password, placeholder: "Password"%><br>
+<%=f.password_field :password_confirmation, placeholder: "Confirm Password"%><br>
+<%=f.select :gender, ["Male", "Female", "Not Into Labels"], :prompt => "Change Gender"%><br>
+<%=f.select :city_id, [["San Francisco",1], ["New York", 2], ["London",3]], :prompt => "Change City"%><br>
+<%=f.submit "Update Profile"%><br>
+<%end%>
