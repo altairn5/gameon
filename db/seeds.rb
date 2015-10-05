@@ -20,6 +20,7 @@ end
   event = Event.create(
     address: "225 Bush Street",
     start_time: Time.now,
+    name: FFaker::Sport::name,
     max_headcount: 2,
     current_headcount: 1,
     description: "try this out" 

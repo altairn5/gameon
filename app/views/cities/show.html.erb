@@ -1,2 +1,11 @@
-<h1>Cities#show</h1>
-<p>Find me in app/views/cities/show.html.erb</p>
+<div>
+	<h1><%= @city.name%></h1>
+</div>
+
+<div>
+  <% @city.events.each do |event| %>
+  	<div class='list-group'>
+  	 <p> <%= link_to event.name, event_path(event)%> Filled: <%= event.current_headcount%>/<%= event.max_headcount%></p> <br>
+</div>
+
+<% end %>
