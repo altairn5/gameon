@@ -19,15 +19,15 @@ end
 10.times do
   event = Event.create(
     address: "225 Bush Street",
-    start_date: Date.now,
     start_time: Time.now,
     max_headcount: 2,
     current_headcount: 1,
     description: "try this out" 
   )
-    random_city = rand(City.count)
+  random_city = rand(City.count)
    City.offset(random_city).first.events << event
-
+  random_user = rand(User.count)
+    User.offset(random_user).first.events << event
 end
 
 
