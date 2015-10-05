@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
 	has_many :sports
-	has_many :events
+	
 	belongs_to :cities
+
+	has_many :attendings
+	has_many :events, through: :attendings
 
 	has_secure_password
 	validates :email, :password, presence: true
