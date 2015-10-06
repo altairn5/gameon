@@ -15,7 +15,9 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @creator = "#{User.find(@event.user_id).first_name} #{User.find(@event.user_id).last_name}"
+    @creator = User.find(@event.user_id)
+    id = params[:id]
+    @event = Event.find(params[:id])
     render :show
   end
 
