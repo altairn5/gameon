@@ -21,16 +21,15 @@ end
     address: "225 Bush Street",
     start_time: Time.now,
     name: FFaker::Sport::name,
-    max_headcount: 2,
-    current_headcount: 1,
-    description: "try this out" 
+    max_headcount: rand(5..10),
+    current_headcount: rand(0..5),
+    description: FFaker::HipsterIpsum.paragraph,
   )
   random_city = rand(City.count)
    City.offset(random_city).first.events << event
   random_user = rand(User.count)
     User.offset(random_user).first.events << event
 end
-
 
 
 
