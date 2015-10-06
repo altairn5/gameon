@@ -27,7 +27,7 @@ class EventsController < ApplicationController
     event_params[:user_id] = user.id
     event_params[:city_id] = params[:id]
     event = Event.create(event_params)
-  
+
     redirect_to "/cities/#{event_params[:city_id]}"
   end
 
