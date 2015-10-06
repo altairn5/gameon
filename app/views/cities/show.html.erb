@@ -8,10 +8,22 @@
 <div>
   <% @city.events.each do |event| %>
   	<div class='list-group'>
-  	 <p> <%= link_to event.name, event_path(event)%> Filled: <%= event.users.count + event.current_headcount%>/<%= event.max_headcount%></p> <br>
-  	 <% if current_user && (event.users.count + event.current_headcount) < event.max_headcount %>
+  	 <p> 
+	  	 <%= event.date.strftime("%b %d,")%> Status: <%= event.users.count + event.current_headcount%>/<%= event.max_headcount%> <h4> <%= link_to event.name, event_path(event)%></h4> <%=event.sport.name%> 
+	  	 (<%= event.address%>)
+	  	 <%if (event.users.count + event.current_headcount) == event.max_headcount%>
+	  	    <h4> FULL </h4>
+	 	 <%else %>
+	 	 	<h4> OPEN </h4>
+	  	 <%end%>
+ 
+  	 </p><br>
+
+  	 
+  	<% if (current_user.id != event.user_id) && (event.users.count + event.current_headcount) < event.max_headcount && !event.users.all.exists?(current_user.id)%>
   	 <%= button_to "Join", attendings_path(event) %>
   	 <% end %>
+
 </div>
 <br>
 
