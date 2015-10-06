@@ -11,7 +11,7 @@
   
   <% @is_creator.each do |event| %>
   	<div class='list-group'>
-  	 <p> <%= link_to event.name, e_path(event)%> Filled: <%= event.users.count + event.current_headcount%>/<%= event.max_headcount%></p> <br>
+  	 <p> <%= link_to event.name, event_path(event)%> Filled: <%= event.users.count + event.current_headcount%>/<%= event.max_headcount%></p> <br>
 	<% end %>	
 
 <% end %>
@@ -21,10 +21,10 @@
 <div>
 	<h1> My Joined Activities </h1>
   
-  <% @attending.each do |event| %>
+  <% @events.each do |event| %>
   	<div class='list-group'>
-  	 <p> <%= link_to event.name, e_path(event)%> Filled: <%= event.users.count + event.current_headcount%>/<%= event.max_headcount%></p> <br>
-	<% end %>	
+  	 <p> <%= link_to event.name, event_path(event)%> Filled: <%= event.users.count + event.current_headcount%>/<%= event.max_headcount%></p> <br>
+  <% end %>	
 
 </div>
 </div>
