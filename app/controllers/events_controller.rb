@@ -20,7 +20,7 @@ class EventsController < ApplicationController
 
   def create
     user = current_user
-    event_params = params.require(:event).permit(:name, :address, :max_headcount, :current_headcount, :description, :start_time, :sport)
+    event_params = params.require(:event).permit(:name, :address, :max_headcount, :current_headcount, :description, :start_time, :sport_id)
     event_params[:user_id] = user.id
     event_params[:city_id] = params[:id]
     event = Event.create(event_params)
@@ -37,7 +37,7 @@ class EventsController < ApplicationController
     event = Event.find(event_id)
 
     #get updated data
-    updated_attributes = params.require(:event).permit(:name, :address, :max_headcount, :current_headcount, :description, :start_time, :sport)
+    updated_attributes = params.require(:event).permit(:name, :address, :max_headcount, :current_headcount, :description, :start_time, :sport_id)
     #update the article 
     event.update_attributes(updated_attributes)
     #redirect to show
