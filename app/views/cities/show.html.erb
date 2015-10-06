@@ -1,6 +1,9 @@
 <div>
 	<h1><%= @city.name%></h1>
 </div>
+<div class="text-right">
+	<%= link_to " Create New Activity", city_event_new_path(@city), :class => "fa fa-plus " %>
+</div>
 
 <div>
   <% @city.events.each do |event| %>
