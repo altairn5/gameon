@@ -8,6 +8,15 @@
 <h4>Players: <%=@event.users.count + @event.current_headcount%>/<%=@event.max_headcount%></h4>
 
 
+<h6> Attending </h6>
+<div>
+  <% @event.users.each do |attendee| %>
+  	<div class='list-group'>
+  	 <p> <%= link_to attendee.first_name + " " + attendee.last_name, user_path(attendee.id) %> </p>
+  	 
+</div>
+<% end %>
+
 
 
 <h4>Creator: <%= link_to (@creator.first_name+" "+@creator.last_name), user_path(@event.user_id)%></h4>
