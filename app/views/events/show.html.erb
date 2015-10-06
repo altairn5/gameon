@@ -4,9 +4,9 @@
 
 <p><%=@event.description%></p>
 
-<h4>Players:<%=@event.current_headcount%>/<%=@event.max_headcount%></h4>
+<h4>Players: <%=@event.current_headcount%>/<%=@event.max_headcount%></h4>
 
-<h4>Creator:<%=@event.user_id%>
+<h4>Creator: <%= link_to @creator, user_path(@event.user_id)%></h4>
 
 
 <small><%= @event.start_time %></small>
