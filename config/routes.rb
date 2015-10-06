@@ -26,8 +26,10 @@ Rails.application.routes.draw do
 
   # post to events
   
-    resources :users
-    resources :cities do
-      resources :events
+  resources :users
+  
+  resources :cities do
+    resources :events
   end
+
 end

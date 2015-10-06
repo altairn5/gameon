@@ -22,8 +22,8 @@
 <h4>Creator: <%= link_to (@creator.first_name+" "+@creator.last_name), user_path(@event.user_id)%></h4>
 
 
-<small><%= @event.start_time %></small>
-<br/>
+<small>Date: <%= @event.date%></small><br>
+<small>Time: <%= @event.time%></small><br>
 
 <% if (current_user.id != @creator.id) && (@event.users.count + @event.current_headcount) < @event.max_headcount && !@available.exists?(current_user.id)%>
 <%= button_to "Join", attendings_path(@event) %>
