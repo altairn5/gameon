@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-	has_many :sports
 	
 	belongs_to :cities
 

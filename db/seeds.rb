@@ -2,6 +2,11 @@ City.create( name: "San Francisco")
 City.create( name: "New York")
 City.create( name: "London")
 
+Sport.create( name: "Tennis")
+Sport.create( name: "Basketball")
+Sport.create( name: "Rockclimbing")
+Sport.create( name: "Other")
+
 10.times do
   user = User.create(
     first_name: FFaker::Name::first_name,
@@ -19,8 +24,8 @@ end
 10.times do
   event = Event.create(
     address: "225 Bush Street",
-    date: Date.now,
-    time: Time.now,
+    date: "10/26/2015",
+    time: "5:00PM",
     name: FFaker::Sport::name,
     max_headcount: rand(5..10),
     current_headcount: rand(0..5),
@@ -30,6 +35,8 @@ end
    City.offset(random_city).first.events << event
   random_user = rand(User.count)
     User.offset(random_user).first.events << event
+  random_sport = rand(Sport.count)
+    Sport.offset(random_sport).first.events << event  
 end
 
 
