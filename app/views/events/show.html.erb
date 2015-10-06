@@ -6,7 +6,7 @@
 
 <h4>Players: <%=@event.users.count + @event.current_headcount%>/<%=@event.max_headcount%></h4>
 
-<h4>Creator: <%= link_to @creator, user_path(@event.user_id)%></h4>
+<h4>Creator: <%= link_to "#{User.find(@event.user_id).first_name} #{User.find(@event.user_id).last_name}", user_path(@event.user_id)%></h4>
 
 
 <small><%= @event.start_time %></small>
