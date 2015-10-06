@@ -4,7 +4,8 @@
 	<%= f.text_field :address, :placeholder => "Location(Address)" %><br>
 	<%= f.text_field :max_headcount, :placeholder => "Total number of players" %><br>
 	<%= f.text_field :current_headcount, :placeholder => "Current number of players" %><br>
-	<%= f.text_field :start_time, :placeholder => "Start Date/Time" %><br>				
+	<%= f.date_select :date, :placeholder => "Date" %><br>
+	<%= f.text_field :time, :placeholder => "Time" %><br>				
 	<%= f.text_area :description, :placeholder => "Description" %><br>
 	<%= f.submit "Create Event" %>
 <% end %>

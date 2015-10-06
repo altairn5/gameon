@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20151006182628) do
 
   create_table "events", force: :cascade do |t|
     t.string   "address"
+    t.time     "start_time"
     t.integer  "max_headcount"
     t.integer  "current_headcount"
     t.string   "description"
