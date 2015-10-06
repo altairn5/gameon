@@ -19,8 +19,8 @@ end
 10.times do
   event = Event.create(
     address: "225 Bush Street",
-    date: Date.now,
-    time: Time.now,
+    date: "10/26/2015",
+    time: "5:00PM",
     name: FFaker::Sport::name,
     max_headcount: rand(5..10),
     current_headcount: rand(0..5),
