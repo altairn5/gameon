@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get "/cities/:id/events/new", to: "events#new", as: "city_event_new"
   post '/cities/:id/events/new', to: 'events#create'
 
+  post "/events/:event_id", to: "attendings#create", as: "attendings"
+
   # post to events
   
     resources :users
