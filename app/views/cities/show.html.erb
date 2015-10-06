@@ -6,6 +6,10 @@
   <% @city.events.each do |event| %>
   	<div class='list-group'>
   	 <p> <%= link_to event.name, event_path(event)%> Filled: <%= event.current_headcount%>/<%= event.max_headcount%></p> <br>
+  	 <% if current_user %>
+  	 <%= button_to "Join", attendings_path(event) %>
+  	 <% end %>
 </div>
+<br>
 
 <% end %>
