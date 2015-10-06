@@ -19,7 +19,7 @@ def index
 
   def show
     @user = User.find(params[:id])
-    render :show
+    @events = @user.events
   end
 
   def edit
