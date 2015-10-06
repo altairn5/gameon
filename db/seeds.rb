@@ -30,7 +30,7 @@ end
 
 20.times do
   event = Event.create(
-    address: FFaker::AddressUS::street_address + ", " + FFaker::AddressUS::city + ", " + FFaker::AddressUS::state_abbr,
+    address: FFaker::AddressUS::street_address + ", " + FFaker::AddressUS::city
     date: "2016/10/26",
     time: "5:00PM",
     name: FFaker::Sport::name,
