@@ -20,6 +20,11 @@ def index
   def show
     @user = User.find(params[:id])
     @events = @user.events
+    @attending = @user.attendings
+    @current_user = current_user
+    @is_creator = @events.where(user_id: @current_user.id)
+ 
+    
   end
 
   def edit
