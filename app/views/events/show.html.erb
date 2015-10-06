@@ -7,15 +7,23 @@
 
 <h4>Players: <%=@event.users.count + @event.current_headcount%>/<%=@event.max_headcount%></h4>
 
+<<<<<<< HEAD
 
 
 <h4>Creator: <%= link_to (@creator.first_name+" "+@creator.last_name), user_path(@event.user_id)%></h4>
+=======
+<h4>Creator: <%= link_to "#{User.find(@event.user_id).first_name} #{User.find(@event.user_id).last_name}", user_path(@event.user_id)%></h4>
+>>>>>>> fd96b72228f029dbc381e80cd69c5c84d29935d5
 
 
 <small><%= @event.start_time %></small>
 <br/>
+<<<<<<< HEAD
 
 <% if current_user %>
+=======
+<% if current_user && (@event.users.count + @event.current_headcount) < @event.max_headcount%>
+>>>>>>> fd96b72228f029dbc381e80cd69c5c84d29935d5
 <%= button_to "Join", attendings_path(@event) %>
 <% end %>
 
