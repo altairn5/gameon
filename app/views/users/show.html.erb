@@ -1,5 +1,7 @@
-<div>
-	Welcome, <%= @user.email %>
-</div>
+<div class="container">
+	Welcome, <%= @user.first_name %> <%= @user.last_name%><br>
 
-<button> <%= link_to 'Logout', sessions_path, method: :delete %></button>
+	Age: <%= @user.age%><br>
+	Gender: <%= @user.gender%><br>
+
+</div>
