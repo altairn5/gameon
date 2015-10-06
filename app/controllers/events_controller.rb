@@ -29,12 +29,27 @@ class EventsController < ApplicationController
   end
 
   def edit
+    id = params[:id]
+    @event = Event.find(params[:id])
   end
 
   def update
+    event_id = params[:id]
+    event = Event.find(event_id)
+
+    #get updated data
+    updated_attributes = params.require(:event).permit(:name, :address, :max_headcount, :current_headcount, :description, :start_time, :sport)
+    #update the article 
+    event.update_attributes(updated_attributes)
+    #redirect to show
+    redirect_to "/events/#{event_id}"
   end
 
   def destroy
+    id = params[:id]
+    event = Event.find(id)
+    event.delete
+    redirect_to "/cities"
   end
 
 end
