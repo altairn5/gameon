@@ -23,9 +23,21 @@ def index
   end
 
   def edit
+    @user = User.find(params[:id])
+    render :edit
   end
 
   def update
+    @user = User.find(params[:id])
+    updated_params = user_params
+    @user.update(updated_params)
+    @city_id = updated_params[:city_id]
+    @city_name = City.find(@city_id).name
+    @user.update_attribute(:first_name, updated_params[:first_name])
+    @user.update_attribute(:last_name, updated_params[:last_name])
+    @user.update_attribute(:city_id, updated_params[:city_id])
+    redirect_to user_path
+  
   end
 
   def destroy
@@ -34,7 +46,7 @@ def index
     private
 
   def user_params
-  params.require(:user).permit(:first_name, :last_name, :email, :password, :age, :gender)
+  params.require(:user).permit(:first_name, :last_name, :email, :password, :age, :gender, :city_id)
   end
 
 
