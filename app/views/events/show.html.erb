@@ -25,10 +25,15 @@
 <small><%= @event.start_time %></small>
 <br/>
 
-<% if (current_user.id != @creator.id) && (@event.users.count + @event.current_headcount) < @event.max_headcount%>
+<% if (current_user.id != @creator.id) && (@event.users.count + @event.current_headcount) < @event.max_headcount && !@available.exists?(current_user.id)%>
 <%= button_to "Join", attendings_path(@event) %>
 <% end %>
 
+
+
+<%if (@event.users.count + @event.current_headcount) == @event.max_headcount%>
+   <h4> CLOSED </h4>
+<%end%>
 
 
 
@@ -38,10 +43,4 @@
 <% end %>
    <span class="links"><%= link_to 'Back', city_path(@event.city_id) %></span>
 
-
-<% if @event.user_id == current_user %>
-  <span class="links"><%= link_to 'Edit', edit_event_path(@event) %> | 
-  <span class="links"><%= link_to 'Delete', @event, method: :delete, data: { confirm: 'Are you sure you want to delete this event' } %></span> | 
-  <% end %>
-   <span class="links"><%= link_to 'Back', city_path(@event.city_id) %></span>
  
