@@ -51,7 +51,7 @@ class EventsController < ApplicationController
   def destroy
     id = params[:id]
     event = Event.find(id)
-    event.delete
+    event.destroy
     redirect_to "/cities"
   end
 
