@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 20151006183936) do
     t.integer  "user_id"
     t.integer  "sport_id"
     t.string   "name"
+    t.date     "date"
+    t.time     "time"
   end
 
   create_table "sports", force: :cascade do |t|
