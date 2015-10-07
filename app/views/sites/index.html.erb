@@ -1,4 +1,107 @@
-<div class="container">
-<h1>Sites#index</h1>
-<p>Find me in app/views/sites/index.html.erb</p>
+<div id="bgndVideo" class="player" 
+	data-property="{videoURL:'http://youtu.be/SJn64kkpOSc',containment:'body',autoPlay:true, mute:true, startAt:0, opacity:1, addRaster:true, stopAt:75.5,}">
+</div>
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="navlogo"><%=image_tag('logo.png')%></div>
+			<div class="navbar-login">
+				<a href="#signupModal" data-toggle="modal" data-toggle-flip data-toggle-flip-target="#registerFlip" data-track-event="SignUpModal,TopbarBtn" class="btn-signup" id="registerBtn">Sign up</a>
+				<a href="#loginModal" data-toggle="modal" data-toggle-flip data-toggle-flip-target="#loginFlip" data-directive="login" data-track-event="LogInModal,TopbarBtn" class="btn-login" id="loginBtn"><i class="icon-user"></i> Log in</a>
+			</div>
+	</div>
+</div>
+<section id="home" class="video">
+	<div class="main-splash">
+		<div class="inner">
+		<h1> GameOn </h1>
+		<h2>Think Tinder, for sports. Join. Connect. Play.</h2>
+<a href="#signupModal" data-toggle="modal" data-toggle-flip data-toggle-flip-target="#registerFlip" data-track-event="SignUpModal,TopbarBtn" class="btn-primary" id="registerBtn">Start Now!</a>		<p>It's free ;)</p>
+		</div>
+	</div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="false">
+  <div class="modal-dialog flip-wrapper">
+    <div class="modal-content flip active" id="loginFlip">
+      <div class="modal-body">
+        <header class="header">
+          <p class="title">Log in</p>
+        </header>
+        <div class="alert alert-danger hide" id="errorWrapperLogin"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>
+        <div class="form-controls">
+          <div class="form-controls">
+            <a id="auth-loginlink" href="#" class="btn-secondary btn-block btn-big" data-track-event="SignUpModal,SignUpWithFacebook"><i class="icon-facebook"></i>&nbsp;&nbsp;Log in with Facebook</a>
+          </div>
+          <div class="line-form-separator"></div>
+
+
+
+
+
+
+
+
+          <div class="form-group">
+          <%= form_for @user, url: "/sessions", method: "post" do |f| %>
+            <label for="username" class="label">Email</label>
+            <%= f.text_field :email, placeholder: "Email", :class => "form-control" %>
+            <label for="password" class="label">Password</label>
+            <%= f.password_field :password, placeholder: "Password", :class => "form-control" %>
+          </div>
+          <div class="form-controls">
+            <%= f.submit "Sign In", :class => "btn-primary btn-block" %>
+          </div>
+<% end %> 
+
+
+
+
+
+
+
+
+         </div>
+        	<div class="form-controls text-center">
+            <a href="#registerFlip" class="imuser" data-toggle-flip data-track-event="SignUpModal,ImNotPlayerLink">I'm not a registered player</a>
+        	</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="false">
+  <div class="modal-dialog flip-wrapper">
+    <div class="modal-content flip active" id="loginFlip">
+      <div class="modal-body">
+        <header class="header">
+          <p class="title">Sign up</p>
+        </header>
+        <div class="alert alert-danger hide" id="errorWrapperLogin"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>
+        <div class="form-controls">
+          <div class="form-controls">
+            <a id="auth-loginlink" href="#" class="btn-secondary btn-block btn-big" data-track-event="SignUpModal,SignUpWithFacebook"><i class="icon-facebook"></i>&nbsp;&nbsp;Sign up with Facebook</a>
+          </div>
+          <div class="line-form-separator"></div>
+ <div class="form-group">
+            <label for="username" class="label">First Name</label>
+            <input name="ctl00$username" maxlength="60" id="username" class="form-control" type="first_name" required="" placeholder="First Name" />
+            <label for="username" class="label">Last Name</label>
+            <input name="ctl00$username" maxlength="60" id="username" class="form-control" type="last_name" required="" placeholder="Last Name" />
+            <label for="username" class="label">Email</label>
+            <input name="ctl00$username" maxlength="60" id="username" class="form-control" type="email" required="" placeholder="Email" />
+            <label for="password" class="label">Password</label>
+            <input name="ctl00$password" type="password" maxlength="60" id="password" class="form-control" required="" placeholder="Password" />
+            <label for="password" class="label">Confirm Password</label>
+            <input name="ctl00$password" type="password" maxlength="60" id="password" class="form-control" required="" placeholder="Password" />
+          </div>
+          <div class="form-group">
+            <input type="submit" name="ctl00$btnRegister" value="Sign up" id="ctl00_btnRegister" class="btn-primary btn-block" />
+          </div>
+          <div class="form-controls text-center">
+            <a href="#loginFlip" class="imuser" data-toggle-flip data-track-event="LogInModal,ImPlayerLink">I'm already a player</a>
+          </div>
+         </div>
+      </div>
+    </div>
+  </div>
 </div>
