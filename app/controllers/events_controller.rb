@@ -26,10 +26,16 @@ class EventsController < ApplicationController
     event_params = params.require(:event).permit(:name, :address, :max_headcount, :current_headcount, :description, :date, :time, :sport_id)
     event_params[:user_id] = user.id
     event_params[:city_id] = params[:id]
-    event = Event.create(event_params)
+ 
+    @event = Event.new(event_params)
 
-    redirect_to "/cities/#{event_params[:city_id]}"
+      if @event.save
+        redirect_to "/cities/#{event_params[:city_id]}"
+      else 
+        render :new
+      end 
   end
+
 
   def edit
     id = params[:id]
