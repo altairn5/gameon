@@ -35,9 +35,10 @@ end
     time: "5:00PM",
     name: FFaker::Sport::name,
     max_headcount: rand(5..10),
-    current_headcount: 0,
+    current_headcount: 1,
     description: FFaker::HipsterIpsum.paragraph,
     user_id: rand(1..20),
+    sport_id: rand(1..4),
   )
 
   random_city = rand(City.count)
