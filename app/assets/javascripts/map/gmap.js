@@ -10,6 +10,11 @@ var LatLng = { lat: 37.78, lng: -122.44};
 // {name: "Gibraltar", LatLng:{ lat: 36.14, lng: -5.35}, description: "Gibraltar is a British Overseas Territory located on the southern end of the Iberian Peninsula at the entrance of the Mediterranean"},
 // {name: "Vietnam", LatLng:{ lat: 21.03, lng: 105.85}, description: "officially the Socialist Republic of Vietnam (SRV; Vietnamese: Cộng hòa Xã hội chủ nghĩa Việt Nam (About this sound listen)), is the easternmost country on the Indochina Peninsula in Southeast Asia."}]
 
+$( document ).ready(function() {
+      $(".player").YTPlayer();
+});
+
+
 // $(document).ready( function (){
 // 	// markerPush(maparr)
 // 	getMapCitiesIndex();
