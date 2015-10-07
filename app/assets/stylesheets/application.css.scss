@@ -11,14 +11,13 @@
  * file per style scope.
  *
  *= require jquery.mb.YTPlayer
+ *= require bootstrap
+ *= require sites
  *= require_tree .
  */
 
-@import "bootstrap-sprockets"
-@import "bootstrap"
-@import "sites"
-
-body 
+body {
     padding-top: 70px
+    }
 
 

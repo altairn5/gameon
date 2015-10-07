@@ -1,5 +1,5 @@
 <div id="bgndVideo" class="player" 
-	data-property="{videoURL:'http://youtu.be/SJn64kkpOSc',containment:'body',autoPlay:true, mute:true, startAt:0, opacity:1, addRaster:true, stopAt:75.5,}">
+	data-property="{videoURL:'http://youtu.be/SJn64kkpOSc',containment:'body',autoPlay:true, mute:true, startAt:0, opacity:1, addRaster:true, stopAt:75.5, showControls:false, stopMovieOnBlur:false}">
 </div>
 <div class="navbar">
 	<div class="navbar-inner">
@@ -66,21 +66,31 @@
             <a id="auth-loginlink" href="#" class="btn-secondary btn-block btn-big" data-track-event="SignUpModal,SignUpWithFacebook"><i class="icon-facebook"></i>&nbsp;&nbsp;Sign up with Facebook</a>
           </div>
           <div class="line-form-separator"></div>
- <div class="form-group">
-            <label for="username" class="label">First Name</label>
-            <input name="ctl00$username" maxlength="60" id="username" class="form-control" type="first_name" required="" placeholder="First Name" />
-            <label for="username" class="label">Last Name</label>
-            <input name="ctl00$username" maxlength="60" id="username" class="form-control" type="last_name" required="" placeholder="Last Name" />
-            <label for="username" class="label">Email</label>
-            <input name="ctl00$username" maxlength="60" id="username" class="form-control" type="email" required="" placeholder="Email" />
-            <label for="password" class="label">Password</label>
-            <input name="ctl00$password" type="password" maxlength="60" id="password" class="form-control" required="" placeholder="Password" />
-            <label for="password" class="label">Confirm Password</label>
-            <input name="ctl00$password" type="password" maxlength="60" id="password" class="form-control" required="" placeholder="Password" />
-          </div>
           <div class="form-group">
-            <input type="submit" name="ctl00$btnRegister" value="Sign up" id="ctl00_btnRegister" class="btn-primary btn-block" />
-          </div>
+          <%= form_for @user, :html => { :multipart => true } do |f| %>
+            <% if @user.errors.any? %> 
+              <div id="error_explanation">
+                <h2><%= pluralize(@user.errors.count, "error") %> prohibited sign up:</h2>
+                <ul>
+                  <% @user.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              </div>
+                <% end %>
+              <% end %>
+            <label for="username" class="label">First Name</label>
+              <%= f.text_field :first_name, placeholder: "First Name", :class => "form-control" %><br>
+            <label for="username" class="label">Last Name</label>
+              <%= f.text_field :last_name, placeholder: "Last Name", :class => "form-control" %><br>
+            <label for="username" class="label">Email</label>
+              <%= f.text_field :email, placeholder: "Email", :class => "form-control" %><br>
+            <label for="password" class="label">Password</label>
+              <%= f.password_field :password, placeholder: "Password", :class => "form-control" %><br>
+            <label for="password" class="label">Confirm Password</label>
+              <%= f.password_field :password_confirmation, placeholder: "Confirm Password", :class => "form-control" %><br>
+            <div class="form-group">
+              <%= f.submit "Sign In", :class => "btn-primary btn-block" %>
+            </div>
+            <%end%>
           <div class="form-controls text-center">
             <a href="#loginFlip" class="imuser" data-toggle-flip data-track-event="LogInModal,ImPlayerLink">I'm already a player</a>
           </div>
