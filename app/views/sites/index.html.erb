@@ -36,9 +36,7 @@
           <div class="line-form-separator"></div>
           <div class="form-group">
           <%= form_for @user, url: "/sessions", method: "post" do |f| %>
-            <label for="username" class="label">Email</label>
-            <%= f.text_field :email, placeholder: "Email", :class => "form-control" %>
-            <label for="password" class="label">Password</label>
+            <%= f.text_field :email, placeholder: "Email", :class => "form-control" %><br>
             <%= f.password_field :password, placeholder: "Password", :class => "form-control" %>
           </div>
           <div class="form-controls">
@@ -77,15 +75,10 @@
               </div>
                 <% end %>
               <% end %>
-            <label for="username" class="label">First Name</label>
               <%= f.text_field :first_name, placeholder: "First Name", :class => "form-control" %><br>
-            <label for="username" class="label">Last Name</label>
               <%= f.text_field :last_name, placeholder: "Last Name", :class => "form-control" %><br>
-            <label for="username" class="label">Email</label>
               <%= f.text_field :email, placeholder: "Email", :class => "form-control" %><br>
-            <label for="password" class="label">Password</label>
               <%= f.password_field :password, placeholder: "Password", :class => "form-control" %><br>
-            <label for="password" class="label">Confirm Password</label>
               <%= f.password_field :password_confirmation, placeholder: "Confirm Password", :class => "form-control" %><br>
             <div class="form-group">
               <%= f.submit "Sign In", :class => "btn-primary btn-block" %>
