@@ -10,11 +10,12 @@
 		        <a class="navbar-brand" href="/">Game On</a>
 		      </div>
 		      <div class="collapse navbar-collapse">
-		        
-		        <%= button_to "Profile", user_path(current_user), method: :get, class:"btn btn-primary navbar-btn navbar-right"%>
-		        <%= button_to "Cities", cities_path, method: :get, class:"btn btn-primary navbar-btn navbar-right"%>
-		        <%= button_to "Edit Profile", edit_user_path(current_user), method: :get, class:"btn btn-primary navbar-btn navbar-right" %>
-		        <%= button_to "Logout", sessions_path, method: :delete, class:"btn btn-primary navbar-btn navbar-right" %>
+		      	<% if @current_user %>
+			        <%= button_to "Profile", user_path(current_user), method: :get, class:"btn btn-primary navbar-btn navbar-right"%>
+			        <%= button_to "Cities", cities_path, method: :get, class:"btn btn-primary navbar-btn navbar-right"%>
+			        <%= button_to "Edit Profile", edit_user_path(current_user), method: :get, class:"btn btn-primary navbar-btn navbar-right" %>
+			        <%= button_to "Logout", sessions_path, method: :delete, class:"btn btn-primary navbar-btn navbar-right" %>
+			    <% end %>
 		      </div>
 		    </div>
 		  </div>
