@@ -12,9 +12,13 @@ def index
   end
 
   def create
-    @user = User.create(user_params)
-    login(@user)
-    redirect_to "/users/#{@user.id}"
+    @user = User.new(user_params)
+    if @user.save
+       login(@user)
+       redirect_to "/users/#{@user.id}"
+    else
+      render :new
+    end
   end
 
   def show
@@ -39,6 +43,7 @@ def index
     @user.update(updated_params)
     @city_id = updated_params[:city_id]
     @city_name = City.find(@city_id).name
+    
     @user.update_attribute(:first_name, updated_params[:first_name])
     @user.update_attribute(:last_name, updated_params[:last_name])
     @user.update_attribute(:city_id, updated_params[:city_id])
