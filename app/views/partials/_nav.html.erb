@@ -1,10 +1,14 @@
+
+<div>
 <%= link_to "Home", root_path %>
 
 <% if current_user %>
 
 <%= link_to "My_Activities", user_path(current_user) %>
 
-<%= link_to "Cities", cities_path %>
+<%= link_to "Cities", cities_path, :"data-no-turbolink" => true %>
+
+<%= link_to "Edit Profile", edit_user_path(current_user)%>
 
 <%= link_to "Logout", sessions_path, method: :delete %>
 <% else %>
@@ -14,3 +18,25 @@
 <%= link_to "Login", '/sessions/new' %>
 
 <% end %>
+<div id="wrap">
+		  <div class="navbar navbar-inverse navbar-fixed-top">
+		    <div class="container">
+		      <div class="navbar-header">
+		        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		          <span class="icon-bar"></span>
+		          <span class="icon-bar"></span>
+		          <span class="icon-bar"></span>
+		        </button>
+		        <a class="navbar-brand" href="/">Game On</a>
+		      </div>
+		      <div class="collapse navbar-collapse">
+		      	<% if @current_user %>
+			        <%= button_to "Profile", user_path(current_user), method: :get, class:"btn btn-primary navbar-btn navbar-right"%>
+			        <%= button_to "Cities", cities_path, method: :get, class:"btn btn-primary navbar-btn navbar-right"%>
+			        <%= button_to "Edit Profile", edit_user_path(current_user), method: :get, class:"btn btn-primary navbar-btn navbar-right" %>
+			        <%= button_to "Logout", sessions_path, method: :delete, class:"btn btn-primary navbar-btn navbar-right" %>
+			    <% end %>
+		      </div>
+		    </div>
+		  </div>
+</div>

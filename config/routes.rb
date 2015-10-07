@@ -8,8 +8,6 @@ Rails.application.routes.draw do
 
   get '/events', to: "events#index", as: "events"
 
-  get '/events/new', to: "events#new", as: "new_event"
-
   get '/events/:id', to: 'events#show', as: "event"
 
   get '/events/:id/edit', to: 'events#edit', as: "edit_event"
@@ -21,8 +19,17 @@ Rails.application.routes.draw do
   #the destroy route 
   delete "/events/:id", to: "events#destroy"
 
-    resources :users
-    resources :cities do
-      resources :events
+  get "/cities/:id/events/new", to: "events#new", as: "city_event_new"
+  post '/cities/:id/events/new', to: 'events#create'
+
+  post "/events/:event_id", to: "attendings#create", as: "attendings"
+
+  # post to events
+  
+  resources :users
+  
+  resources :cities do
+    resources :events
   end
+
 end

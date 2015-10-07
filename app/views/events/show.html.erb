@@ -1,19 +1,47 @@
 <h1><%=@event.name %></h1>
+<h4><%=@event.sport.name%></h4>
 
 <h3><%= @event.address %></h3>
 
 <p><%=@event.description%></p>
 
-<h4>Players:<%=@event.current_headcount%>/<%=@event.max_headcount%></h4>
 
-<h4>Creator:<%=@event.user_id%>
+<h4>Players: <%=@event.users.count + @event.current_headcount%>/<%=@event.max_headcount%></h4>
 
 
-<small><%= @event.start_time %></small>
-<br/>
+<h6> Attending </h6>
+<div>
+  <% @event.users.each do |attendee| %>
+  	<div class='list-group'>
+  	 <p> <%= link_to attendee.first_name + " " + attendee.last_name, user_path(attendee.id) %> </p>
+  	 
+</div>
+<% end %>
 
-<% if @event.user_id == current_user %>
+
+
+<h4>Creator: <%= link_to (@creator.first_name+" "+@creator.last_name), user_path(@event.user_id)%></h4>
+
+
+<small>Date: <%= @event.date.strftime("%b %d, %Y")%></small><br>
+<small>Time: <%= @event.time.strftime("%I:%M%p") %></small><br>
+
+<% if (current_user.id != @creator.id) && (@event.users.count + @event.current_headcount) < @event.max_headcount && !@available.exists?(current_user.id)%>
+<%= button_to "Join", attendings_path(@event) %>
+<% end %>
+
+
+
+<%if (@event.users.count + @event.current_headcount) == @event.max_headcount%>
+   <h4> FULL </h4>
+<%end%>
+
+
+
+<% if @event.user_id == current_user.id %>
   <span class="links"><%= link_to 'Edit', edit_event_path(@event) %> | 
   <span class="links"><%= link_to 'Delete', @event, method: :delete, data: { confirm: 'Are you sure you want to delete this event' } %></span> | 
-  <% end %>
+<% end %>
    <span class="links"><%= link_to 'Back', city_path(@event.city_id) %></span>
+
+ 

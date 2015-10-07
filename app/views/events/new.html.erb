@@ -1,2 +1,23 @@
-<h1>Events#new</h1>
-<p>Find me in app/views/events/new.html.erb</p>
+<%= form_for @event, url: city_event_new_path, method: "post" do  |f| %>
+
+	<% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this activity from created:</h2>
+
+      <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+    </div>
+      <% end %>
+      <% end %>
+
+	<%= f.text_field :name, :placeholder => "Name of Event" %><br>
+	<%=f.select :sport_id, [["Tennis",1], ["Basketball", 2], ["Rockclimbing",3], ["Other",4]], :prompt => "Select Activity"%><br>
+	<%= f.text_field :address, :placeholder => "Location(Address)" %><br>
+	<%= f.text_field :max_headcount, :placeholder => "Total number of players" %><br>
+	<%= f.text_field :current_headcount, :placeholder => "Current number of players" %><br>
+	<%= f.date_select :date, :order => [:month, :day, :year]%><br>
+	<%= f.time_select :time, :ampm => true, :minute_step => 15 %><br>				
+	<%= f.text_area :description, :placeholder => "Description" %><br>
+	<%= f.submit "Create Event" %>
+<% end %>

@@ -12,20 +12,43 @@ def index
   end
 
   def create
-    @user = User.create(user_params)
-    login(@user)
-    redirect_to "/users/#{@user.id}"
+    @user = User.new(user_params)
+    if @user.save
+       login(@user)
+       redirect_to "/users/#{@user.id}"
+    else
+      render :new
+    end
   end
 
   def show
     @user = User.find(params[:id])
-    render :show
+    @events = @user.events
+    @is_creator = Event.where(user_id: @user.id)
+    @event = Event.all
+    @current_user = current_user
+    @is_creator = @event.where(user_id: @user.id)
+
+    
   end
 
   def edit
+    @user = User.find(params[:id])
+    render :edit
   end
 
   def update
+    @user = User.find(params[:id])
+    updated_params = user_params
+    @user.update(updated_params)
+    @city_id = updated_params[:city_id]
+    @city_name = City.find(@city_id).name
+    
+    @user.update_attribute(:first_name, updated_params[:first_name])
+    @user.update_attribute(:last_name, updated_params[:last_name])
+    @user.update_attribute(:city_id, updated_params[:city_id])
+    redirect_to user_path
+  
   end
 
   def destroy
@@ -34,7 +57,7 @@ def index
     private
 
   def user_params
-  params.require(:user).permit(:first_name, :last_name, :email, :password, :age, :gender)
+  params.require(:user).permit(:first_name, :last_name, :email, :password, :age, :gender, :city_id, :avatar)
   end
 
 
