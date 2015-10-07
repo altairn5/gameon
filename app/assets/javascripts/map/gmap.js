@@ -1,6 +1,7 @@
 var map;
+var cityMap
 var markers = [];
-var LatLng = { lat: 40.00, lng: -30.00};
+var LatLng = { lat: 37.78, lng: -122.44};
 // var maparr = [{name: "San Francisco", LatLng:{ lat: 37.78, lng: -122.44}, description: "San Francisco, officially the City and County of San Francisco, is the cultural, commercial, and financial center of Northern California and the only consolidated city-county in California." },
 // {name: "london", LatLng:{ lat: 51.50, lng: 0.12}, description: "London is the capital and most populous city of England and the United Kingdom.Standing on the River Thames, London has been a major settlement for two millennia, its history going back to its founding by the Romans."},
 // {name: "New York", LatLng:{ lat: 40.71, lng: -74.00},  description: "New York – often called New York City or the City of New York to distinguish it from the State of New York, of which it is a part – is the most populous city in the United States[1] and the center of the New York metropolitan area, the premier gateway for legal immigration to the United States[9][10][11] and one of the most populous urban agglomerations in the world."},
@@ -12,22 +13,29 @@ var LatLng = { lat: 40.00, lng: -30.00};
 
 $(document).ready( function (){
 	// markerPush(maparr)
-	getMap();
+	getMapCitiesIndex();
+	getMapCityShow();
 	setMapOnAll(map);
 
 });
 
 
 
-function getMap () {
+function getMapCitiesIndex () {
 
 	map = new google.maps.Map(document.getElementById('map-canvas'), {
 		center: LatLng,
 		zoom: 3
 	});
-	console.log("sanity")
+		
+};
 
-	
+function getMapCityShow(){
+	cityMap = new google.map.Map(document.getElementById('city-map'), {
+		center: LatLng,
+		zoom: 11
+	});
+	console.log("sanitywhat?")
 };
 
 function markerPush(arr) {
