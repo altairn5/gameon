@@ -22,7 +22,7 @@ def index
     @events = @user.events
     @event = Event.all
     @current_user = current_user
-    @is_creator = @event.where(user_id: @current_user.id)
+    @is_creator = @event.where(user_id: @user.id)
     
 
     
