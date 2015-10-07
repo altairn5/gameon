@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require bootstrap
 //= require jquery.mb.YTPlayer
+//= require map/gmap
 //= require_tree .
