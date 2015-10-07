@@ -1,5 +1,4 @@
 var map;
-var cityMap
 var markers = [];
 var LatLng = { lat: 37.78, lng: -122.44};
 // var maparr = [{name: "San Francisco", LatLng:{ lat: 37.78, lng: -122.44}, description: "San Francisco, officially the City and County of San Francisco, is the cultural, commercial, and financial center of Northern California and the only consolidated city-county in California." },
@@ -11,13 +10,13 @@ var LatLng = { lat: 37.78, lng: -122.44};
 // {name: "Gibraltar", LatLng:{ lat: 36.14, lng: -5.35}, description: "Gibraltar is a British Overseas Territory located on the southern end of the Iberian Peninsula at the entrance of the Mediterranean"},
 // {name: "Vietnam", LatLng:{ lat: 21.03, lng: 105.85}, description: "officially the Socialist Republic of Vietnam (SRV; Vietnamese: Cộng hòa Xã hội chủ nghĩa Việt Nam (About this sound listen)), is the easternmost country on the Indochina Peninsula in Southeast Asia."}]
 
-$(document).ready( function (){
-	// markerPush(maparr)
-	getMapCitiesIndex();
-	getMapCityShow();
-	setMapOnAll(map);
+// $(document).ready( function (){
+// 	// markerPush(maparr)
+// 	getMapCitiesIndex();
+// 	getMapCityShow();
+// 	setMapOnAll(map);
 
-});
+// });
 
 
 
@@ -31,7 +30,7 @@ function getMapCitiesIndex () {
 };
 
 function getMapCityShow(){
-	cityMap = new google.map.Map(document.getElementById('city-map'), {
+	map = new google.maps.Map(document.getElementById('city-map'), {
 		center: LatLng,
 		zoom: 11
 	});
