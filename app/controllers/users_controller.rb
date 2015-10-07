@@ -22,7 +22,7 @@ def index
     @events = @user.events
     @event = Event.all
     @current_user = current_user
-    @is_creator = @event.where(user_id: @current_user.id)
+    @is_creator = @event.where(user_id: @user.id)
     
 
     
@@ -52,7 +52,7 @@ def index
     private
 
   def user_params
-  params.require(:user).permit(:first_name, :last_name, :email, :password, :age, :gender, :city_id)
+  params.require(:user).permit(:first_name, :last_name, :email, :password, :age, :gender, :city_id, :avatar)
   end
 
 

@@ -1,6 +1,6 @@
 <h1> Sign Up </h1>
 
-<%= form_for @user do |f| %>
+<%= form_for @user, :html => { :multipart => true } do |f| %>
 	<%= f.text_field :first_name, placeholder: "First Name" %><br>
 	<%= f.text_field :last_name, placeholder: "Last Name" %><br>
 	<%= f.text_field :email, placeholder: "Email" %><br>
@@ -8,5 +8,6 @@
 	<%= f.password_field :password_confirmation, placeholder: "Confirm Password" %><br>
 	<%= f.text_field :age, placeholder: "Age" %><br>
 	<%= f.select :gender, [ 'Male', 'Female'], :prompt => 'Select Gender' %><br>
+	<%= f.file_field :avatar %>
 	<%= f.submit "Sign Up!" %>
 <%end%>
