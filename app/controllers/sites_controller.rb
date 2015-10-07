@@ -2,7 +2,7 @@ class SitesController < ApplicationController
   
   def index
 	 	@user = User.new
-	 	render :layout => false
+	 	render :index
   end
 
   def about
