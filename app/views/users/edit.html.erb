@@ -14,8 +14,9 @@
 <%=f.text_field :first_name, placeholder: "First Name"%><br>
 <%=f.text_field :last_name, placeholder: "Last Name"%><br>
 <%=f.text_field :email, placeholder: "e-mail"%><br>
-
+<%= f.text_field :age, placeholder: "Age" %><br>
 <%=f.select :gender, ["Male", "Female", "Not Into Labels"], :prompt => "Change Gender"%><br>
 <%=f.select :city_id, [["San Francisco",1], ["New York", 2], ["London",3]], :prompt => "Change City"%><br>
+<%= f.file_field :avatar %><br>
 <%=f.submit "Update Profile"%><br>
 <%end%>
