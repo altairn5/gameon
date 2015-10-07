@@ -7,24 +7,47 @@
 	<h1 class="overflow h3 space-1 text-center"><%=@event.sport.name%>: <%=@event.name %></h1>
 	<h5 class="space-2 text-muted text-center"><%= @event.address %> (<%= @event.city %>)</h5>
 </div>
-
+<br>
 <div id="event-stats">
-	<h4>Host: <%= link_to (@creator.first_name+" "+@creator.last_name), user_path(@event.user_id)%></h4>
 
-	<h4>Date: <%= @event.date.strftime("%b %d, %Y")%></small></h4>
-	<h4>Time: <%= @event.time.strftime("%I:%M%p") %></small></h4>
+	<div class="row row-condensed text-muted text-center icons" >
+		<div class="col-xs-3 col-sm-3 col-md-3" >
+			<i class="fa fa-user">
+				<p>Host: <%= link_to (@creator.first_name+" "+@creator.last_name), user_path(@event.user_id)%>
+				</p>
+			</i>
+		</div>
+
+		<div class="col-xs-3 col-sm-3 col-md-3" >
+			<i class="fa fa-user">
+				<p>Date: <%= @event.date.strftime("%b %d, %Y")%>
+				</p>
+			</i>
+		</div>
+		
+		<div class="col-xs-3 col-sm-3 col-md-3" >
+			<i class="fa fa-user">
+				<p>Time: <%= @event.time.strftime("%I:%M%p") %>
+				</p>
+			</i>
+		</div>
+		<div class="col-xs-3 col-sm-3 col-md-3" >
+			<i class="fa fa-user">
+				<p>Current Players: <%=@event.users.count + @event.current_headcount%> Players Currently
+				</p>
+			</i>
+		</div>
+		<div class="col-xs-3 col-sm-3 col-md-3" >
+			<i class="fa fa-user">
+				<p>Needed <%=@event.max_headcount - @event.current_headcount%> More Players
+				</p>
+			</i>
+		</div>
 
 
-	<h4>Current Players: <%=@event.users.count + @event.current_headcount%> Players Currently</h4>
+	</div>
 
-	<h4>Needed <%=@event.max_headcount - @event.current_headcount%> Players </h4>
-	<h4>Status:  
-		<%if (@event.users.count + @event.current_headcount) == @event.max_headcount%>
-	    	FULL 
-		<%else %> 
-	   		OPEN
-		<%end%>
-	</h4>
+
 </div>
 
 
@@ -41,6 +64,15 @@
   	 <p> <%= link_to attendee.first_name + " " + attendee.last_name, user_path(attendee.id) %> </p>
 </div>
 <% end %>
+
+<h4>Status:  
+		<%if (@event.users.count + @event.current_headcount) == @event.max_headcount%>
+	    	FULL 
+		<%else %> 
+	   		OPEN
+		<%end%>
+</h4>
+
 
 <% if (current_user.id != @creator.id) && (@event.users.count + @event.current_headcount) < @event.max_headcount && !@available.exists?(current_user.id)%>
 <%= button_to "Join", attendings_path(@event) %>
