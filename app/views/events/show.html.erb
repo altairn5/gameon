@@ -63,6 +63,30 @@
 </div>
 
 
+
+<div id="event-description">
+	<h4 class="row-space-4 text-center"> About this activity
+			<%if (@event.users.count + @event.current_headcount) == @event.max_headcount%>
+				<span id="full-status">(FULL)</span>
+			<%else %>
+				<span id="open-status">(OPEN)</span>
+			<%end%>
+	</h4>
+	<p><%=@event.description%></p>
+</div>
+
+<div id="Participants">
+	<h4 class="row-space-4"> 
+		Current Participants: 
+			<span class='list-group'>
+				<% @event.users.each do |attendee| %>
+				  	 <%= link_to attendee.first_name + " " + attendee.last_name, user_path(attendee.id)%> |
+				<% end %>
+			</span>
+	</h4>
+<div>
+
+
 <span class="text-center">
 	<% if (current_user.id != @creator.id) && (@event.users.count + @event.current_headcount) < @event.max_headcount && !@available.exists?(current_user.id)%>
 	<%= button_to "Join", attendings_path(@event) %>
