@@ -1,23 +1,37 @@
-<%= form_for @event, url: city_event_new_path, method: "post" do  |f| %>
+  <div class="modal-dialog flip-wrapper">
+    <div class="modal-content flip active" id="loginFlip">
+      <div class="modal-body">
+        <header class="header">
+          <p class="title">Create Event</p>
+        </header>
+        <div class="alert alert-danger hide" id="errorWrapperLogin"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>
+        <div class="form-controls">
+          <div class="line-form-separator"></div>
+          <div class="form-group">
+          <%= form_for @event, url: city_event_new_path, method: "post" do  |f| %>
 
-	<% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this activity from created:</h2>
+          	<% if @event.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@event.errors.count, "error") %> prohibited this activity from being created:</h2>
 
-      <ul>
-      <% @event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+                <ul>
+                <% @event.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              </div>
+            	<% end %>
+            <% end %>
+              <%= f.text_field :name, :placeholder => "Name of Event", :class => "form-control" %>
+              <%=f.select :sport_id, [["Tennis",1], ["Basketball", 2], ["Rockclimbing",3], ["Other",4]], :prompt => "Select Activity", :class => "form-control", :class => "form-control" %><br>
+              <%= f.text_field :address, :placeholder => "Location(Address)", :class => "form-control" %><br>
+              <%= f.text_field :max_headcount, :placeholder => "Total number of players", :class => "form-control" %><br>
+              <%= f.text_field :current_headcount, :placeholder => "Current number of players", :class => "form-control" %><br>
+              <%= f.date_select :date, :order => [:month, :day, :year], :class => "form-control"%>
+              <%= f.time_select :time, :ampm => true, :minute_step => 15, :class => "form-control" %><br><br>				
+              <%= f.text_area :description, :placeholder => "Description", :class => "form-control" %><br>
+              <%= f.submit "Create Event", :class => "btn-primary btn-block" %>
+            <%end%>
+         </div>
+      </div>
     </div>
-      <% end %>
-      <% end %>
-
-	<%= f.text_field :name, :placeholder => "Name of Event" %><br>
-	<%=f.select :sport_id, [["Tennis",1], ["Basketball", 2], ["Rockclimbing",3], ["Other",4]], :prompt => "Select Activity"%><br>
-	<%= f.text_field :address, :placeholder => "Location(Address)" %><br>
-	<%= f.text_field :max_headcount, :placeholder => "Total number of players" %><br>
-	<%= f.text_field :current_headcount, :placeholder => "Current number of players" %><br>
-	<%= f.date_select :date, :order => [:month, :day, :year]%><br>
-	<%= f.time_select :time, :ampm => true, :minute_step => 15 %><br>				
-	<%= f.text_area :description, :placeholder => "Description" %><br>
-	<%= f.submit "Create Event" %>
-<% end %>
+  </div>
+</div>
