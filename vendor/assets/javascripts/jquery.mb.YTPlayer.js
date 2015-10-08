@@ -245,7 +245,7 @@ var getYTPVideoID = function( url ) {
 										} );
 										$YTPlayer.hide();
 								} else if( YTPlayer.opt.containment.css( "position" ) == "static" ) YTPlayer.opt.containment.css( {
-										position: "relative"
+										position: "static"
 								} );
 								YTPlayer.opt.containment.prepend( wrapper );
 								YTPlayer.wrapper = wrapper;
