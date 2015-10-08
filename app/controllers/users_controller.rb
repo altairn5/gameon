@@ -24,7 +24,9 @@ def index
   def show
     @user = User.find(params[:id])
     @events = @user.events
-    @titles = @user.events.name
+    @local = @user.city.events
+    # @title = @local.all
+    # @words = @
     @is_creator = Event.where(user_id: @user.id)
     @event = Event.all
     @current_user = current_user
