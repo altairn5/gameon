@@ -9,63 +9,54 @@ $( document ).ready(function() {
 });
  // ex: https://maps.googleapis.com/maps/api/geocode/xml?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_KEY
 
- function renderMap(loc){
-	// var loc = $('.act-loc').text();
-	var address = loc.replace(" ","+");	
-	$.get("https://maps.googleapis.com/maps/api/geocode/json?", { "address" : address}, function (data) {
-	ltlg = data.results[0].geometry.location;
+	function renderMap(loc, htmlTag){
+		
+		var address = loc.replace(" ","+");	
+		$.get("https://maps.googleapis.com/maps/api/geocode/json?", { "address" : address}, function (data) {
+		ltlg = data.results[0].geometry.location;
 
-	getCityMap();
-	getEventMap();
+     //function below needs to be called at the end of callback function
+		MakeCityEventMap(ltlg,htmlTag);
 
-	});
- }
+		});
+	}
 
-
-//  function getEventMap(){
-//  		map = new google.maps.Map(document.getElementById('event-map'), {
-//  			center: ltlg,
-//  			zoom: 10
-//  		});
-//  }
-
-// function getCityMap(){
-// 	map = new google.maps.Map(document.getElementById('city-map'), {
-// 		center: ltlg,
-// 		zoom: 11
-// 	});
-// }
-
-function makeMap(selector, config) {
-	map = new google.maps.Map(document.getElementById(selector), {
-		center: config.center,
-		zoom: config.zoom || 10
-	});
-}
-
- function citiesLntLng(cityNames){
-
- 	cityNames.forEach(function(city){
-	 	var oneCity = city.replace(" ","+");
-	 	$.get("https://maps.googleapis.com/maps/api/geocode/json?" , { "address" : oneCity}, function (response){
-	 		LatLng = response.results[0].geometry.location;
-	 		console.log("this is lat and long" , LatLng);
-	 		markerPush(LatLng)
-	 	});	
- 	});
  	
- }
- 	function markerPush(latsNlongs){
-		// for(var i = 0;i<=latsNlongs.length;i++) {
-			var marker = new google.maps.Marker({
-				position: latsNlongs,
-				map: map
-			})
-		// }
+ 	function MakeCityEventMap(point, idHTMLtag){
+ 		map = new google.maps.Map(document.getElementById(idHTMLtag), {
+ 			center: point,
+ 			zoom:10
+ 		});
+ 	}
 
-		// markers.push(marker);
-		// console.log(markers);
-		// setMapOnAll(bigMap);
+
+	function makeMap(selector, config) {
+		map = new google.maps.Map(document.getElementById(selector), {
+			center: config.center,
+			zoom: config.zoom || 10
+		});
+	}
+
+	//functions finds the latitude and longitude of the cities passed in the array CityNames
+	function citiesLntLng(cityNames){
+		cityNames.forEach(function(city){
+	 		var oneCity = city.replace(" ","+");
+	 		//Ajax request to find the lat & long of the array of cities that I am passing
+		 	$.get("https://maps.googleapis.com/maps/api/geocode/json?" , { "address" : oneCity}, function (response){
+		 		LatLng = response.results[0].geometry.location;
+		 		console.log("this is lat and long" , LatLng);
+		 		//Ajax response cannot be predicted. Passing answer as received as arg to the markerPush function
+		 		markerPush(LatLng)
+		 	});	
+		});
+		
+	}
+		//function builds marker when receive. No need to build an arrays of objects
+	 	function markerPush(latsNlongs){
+				var marker = new google.maps.Marker({
+					position: latsNlongs,
+					map: map
+				});
  	}
 
 
