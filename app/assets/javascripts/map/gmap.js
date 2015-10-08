@@ -7,7 +7,6 @@ $( document ).ready(function() {
       $(".player").YTPlayer();
 });
 
-
 // $(document).ready( function (){
 // 	// markerPush(maparr)
 // 	getMapCitiesIndex();
