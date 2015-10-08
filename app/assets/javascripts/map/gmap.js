@@ -11,11 +11,12 @@ $( document ).ready(function() {
 // $(document).ready( function (){
 // 	// markerPush(maparr)
 // 	getMapCitiesIndex();
-// 	getMapCityShow();
+// 	getCityMap();
 // 	setMapOnAll(map);
 
 // });
 // function locHandler () { 
+	// below is only good for an array
 
 //         var locArray = $('.act-loc').val().split(" ");
 //         var addr = locArray.join("+");
@@ -25,26 +26,36 @@ $( document ).ready(function() {
 //         getMap();
 //         })
 // }
- function renderMap(){
- 		 var loc = $('.act-loc').text();
- 		 console.log("expecting", loc);
-         var address = loc.replace(" ","+");
- 		
+
+ // ex: https://maps.googleapis.com/maps/api/geocode/xml?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_KEY
+ function renderMap(loc){
+ 		 // var loc = $('.act-loc').text();
+    var address = loc.replace(" ","+");	
  	$.get("https://maps.googleapis.com/maps/api/geocode/json?", { "address" : address}, function (data) {
             ltlg = data.results[0].geometry.location;
-            
-        getActMap();
+  		 
+  		 getCityMap();
+  		 getEventMap();
+ 	 	 
         });
+
  };
 
 
- function getActMap(){
- 		map = new google.maps.Map(document.getElementById('city-map'), {
+ function getEventMap(){
+ 		map = new google.maps.Map(document.getElementById('event-map'), {
  			center: ltlg,
  			zoom: 10
  		});
  };
 
+function getCityMap(){
+	map = new google.maps.Map(document.getElementById('city-map'), {
+		center: ltlg,
+		zoom: 11
+	});
+
+};
 
 
 function getMapCitiesIndex () {
@@ -53,39 +64,34 @@ function getMapCitiesIndex () {
 		center: LatLng,
 		zoom: 3
 	});
-		
+	
 };
 
-function getMapCityShow(){
-	map = new google.maps.Map(document.getElementById('city-map'), {
-		center: LatLng,
-		zoom: 11
-	});
-	console.log("sanitywhat?")
-};
 
-function markerPush(arr) {
-	arr.forEach(function(el) {
-		link = el.name.replace(/\s/g, '-')
-		var marker = new google.maps.Marker({
-			position: el.LatLng,
-			map: map,
-			url: "http://localhost:3000/cities/" + link,
-			title: el.name
-		})
-		var info = createInfoWindow(el.description);
-		google.maps.event.addListener(marker, 'mouseover', function() {
-			info.open(map,marker);
-		});
-		google.maps.event.addListener(marker, 'mouseout', function() {
-			info.close(map,marker);
-		});
-		google.maps.event.addListener(marker, 'click', function() {
-			window.location.href =  marker.url;
-		});
-		markers.push(marker)
-	});
-};
+// function markerPush(cityName) {
+// 	var pinArr = cityName;
+//    	console.log ("this is pin-loc", pinArr);
+// 	pinArr.forEach(function(el) {
+// 		link = el.name.replace(/\s/g, '-')
+// 		var marker = new google.maps.Marker({
+// 			position: el.LatLng,
+// 			map: map,
+// 			url: "http://localhost:3000/cities/" + link,
+// 			title: el.name
+// 		})
+		// var info = createInfoWindow(el.description);
+		// google.maps.event.addListener(marker, 'mouseover', function() {
+		// 	info.open(map,marker);
+		// });
+		// google.maps.event.addListener(marker, 'mouseout', function() {
+		// 	info.close(map,marker);
+// 		// });
+// 		google.maps.event.addListener(marker, 'click', function() {
+// 			window.location.href =  marker.url;
+// 		});
+// 		markers.push(marker)
+// 	});
+// };
 
 
 
