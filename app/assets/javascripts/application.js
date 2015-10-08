@@ -16,4 +16,5 @@
 //= require bootstrap
 //= require jquery.mb.YTPlayer
 //= require map/gmap
+//= require instafeed
 //= require_tree .
