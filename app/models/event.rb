@@ -1,4 +1,11 @@
 class Event < ActiveRecord::Base
+	belongs_to :city
+	belongs_to :sport
+	belongs_to :user
+
+	has_many :attendings
+	has_many :users, through: :attendings, dependent: :destroy #delete associated attendings
+
 	validates :name, presence: true, length: { maximum: 200, too_long: "%{count} characters is the maximum allowed"  }
 	validates :sport_id, presence: true
 
@@ -8,17 +15,9 @@ class Event < ActiveRecord::Base
 	validate :date_cannot_be_in_the_past
 
 	def date_cannot_be_in_the_past
-	    errors.add(:date, "can't be in the past") if
-	      !date.blank? and date < Date.today
+		errors.add(:date, "can't be in the past") if
+			!date.blank? and date < Date.today
 	end
-
-
-	belongs_to :city
-	belongs_to :sport
-	belongs_to :user
-
-	has_many :attendings
-	has_many :users, through: :attendings, dependent: :destroy #delete associated attendings
 
 end
 
