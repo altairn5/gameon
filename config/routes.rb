@@ -14,9 +14,11 @@ Rails.application.routes.draw do
 
   post "/events", to: "events#create"
 
-  patch "/users/:event_id", to: "attendings#edit", as: "remove_attending"
+  patch "/users/edit/:event_id", to: "attendings#edit", as: "remove_attending"
   #the update route 
   patch "/events/:id", to: "events#update"
+
+  patch "/users/:id", to: "users#update"
 
 
 
