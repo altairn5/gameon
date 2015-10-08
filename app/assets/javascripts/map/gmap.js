@@ -64,6 +64,19 @@ function getMapCityShow(){
 	console.log("sanitywhat?")
 };
 
+function getMap () {
+
+	map = new google.maps.Map(document.getElementById('eventshow-map-canvas'), {
+		center: LatLng,
+		zoom: 3
+	});
+	console.log("sanity")
+
+	
+};
+
+
+
 function markerPush(arr) {
 	arr.forEach(function(el) {
 		link = el.name.replace(/\s/g, '-')
