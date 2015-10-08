@@ -1,7 +1,22 @@
-<div class="page-container">
-<div class="eventshow-map-container">
 
+
+<div class="page-container">
+
+
+   <span class='act-loc'><%=@city_name %></span>
+
+
+<!-- Displays map -->
+<div class="container">
+	<div id="eventshow-map-container">
+  		<div id="city-map"></div>
+	</div>
 </div>
+<!-- call functions that displays map -->
+<script type="text/javascript">
+  renderMap();
+</script>
+
 
 <div>
 	<h1 class="overflow h3 space-1 text-center"><%=@event.sport.name%>: <%=@event.name %></h1>
@@ -43,14 +58,10 @@
 			<i class="fa fa-user-plus fa-2x"></i>
 				<p>Needed <%=@event.max_headcount - @event.current_headcount%> More <br>Players
 				</p>
-	
 		</div>
-
-
 	</div>
-
-
 </div>
+
 
 <span class="text-center">
 	<% if (current_user.id != @creator.id) && (@event.users.count + @event.current_headcount) < @event.max_headcount && !@available.exists?(current_user.id)%>
@@ -68,22 +79,14 @@
 	 
 
 
+
+
+
 <% if (current_user.id == @creator.id) || @available.exists?(current_user.id)%>
 <%= button_to "Leave Event", remove_attending_path(@event), method: :patch %>
 <% end %>
 
  
-   <span class='act-loc'><%=@city_name %></span>
-<!-- Displays map -->
-<div class="container">
-<div id="city-container">
-  <div id="city-map"></div>
-</div>
-</div>
-<!-- call functions that displays map -->
-<script type="text/javascript">
-  renderMap();
-</script>
 
  
 
