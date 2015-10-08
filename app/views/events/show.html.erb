@@ -49,8 +49,20 @@
 <% end %>
    <span class="links"><%= link_to 'Back', city_path(@event.city_id) %></span>
 
+   <span class='act-loc'><%=@city_name %></span>
 
 <% if (current_user.id == @creator.id) || @available.exists?(current_user.id)%>
 <%= button_to "Leave Event", remove_attending_path(@event), method: :patch %>
 <% end %>
+<!-- Displays map -->
+<div class="container">
+<div id="city-container">
+  <div id="city-map"></div>
+</div>
+</div>
+<!-- call functions that displays map -->
+<script type="text/javascript">
+  renderMap();
+</script>
+
  
