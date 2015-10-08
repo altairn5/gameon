@@ -18,8 +18,6 @@ class AttendingsController < ApplicationController
 		@user = current_user
 		@event = Event.find(params[:event_id])
 		@event.users.delete(@user.id)
-		
-		
 
 		redirect_to event_path(@event.id)
 	end

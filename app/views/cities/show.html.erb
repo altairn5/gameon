@@ -1,8 +1,10 @@
-
+<script type="text/javascript">
+renderMap();
+</script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg"></script>
 
+<<<<<<< HEAD
 <div>
 	<h1><%= @city.name%></h1>
 </div>
@@ -40,13 +42,31 @@
 
 <% end %>
 <span class='act-loc'><%=@city_name %></span>
+=======
+<div id="city-map"></div>
+>>>>>>> f91a6fac7cfb021000eed93faa70de7d9f27adcb
 <div class="container">
-<div id="city-container">
-  <div id="city-map"></div>
+  <div>
+   <h1 class='act-loc'><%= @city.name%></h1>
+  </div>
+  <div class="text-right">
+    <%= link_to " Create New Activity", city_event_new_path(@city), :class => "fa fa-plus " %>
+  </div>
+  <% @city.events.each do |event| %>
+    <div class='list-group'>
+      <p><%= event.date.strftime("%b %d,")%> Status: <%= event.users.count + event.current_headcount%>/<%= event.max_headcount%> <h4> <%= link_to event.name, event_path(event)%></h4> <%=event.sport.name%> (<%= event.address%>)
+        <%if (event.users.count + event.current_headcount) == event.max_headcount%>
+          <h4> FULL </h4>
+        <%else %>
+          <h4> OPEN </h4>
+        <%end%>
+      </p><br>
+        <% if (current_user.id != event.user_id) && (event.users.count + event.current_headcount) < event.max_headcount && !event.users.all.exists?(current_user.id)%>
+          <%= button_to "Join", attendings_path(event) %>
+        <% end %>
+        <% if (current_user.id != event.user_id) && event.users.all.exists?(current_user.id)%>
+          <%= button_to "Leave Event", remove_attending_path(event), method: :patch %>
+        <% end %>
+    </div><br>
+        <% end %>
 </div>
-</div>
-
-<script type="text/javascript">
-	renderMap();
-</script>
-

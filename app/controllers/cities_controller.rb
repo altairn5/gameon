@@ -1,4 +1,5 @@
 class CitiesController < ApplicationController
+
   def index
   	@cities = City.all
   end
@@ -7,6 +8,6 @@ class CitiesController < ApplicationController
   	id = params[:id]
   	@city = City.find(id)
   	@city_name = @city.name
-  
   end
+  
 end
