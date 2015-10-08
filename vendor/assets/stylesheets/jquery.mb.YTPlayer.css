@@ -110,7 +110,7 @@
 .inline_YTPlayer {
     margin-bottom: 20px;
     vertical-align: top;
-    position: relative;
+    /*position: relative;*/
     left: 0;
     overflow: hidden;
     border-radius: 4px;
@@ -179,7 +179,7 @@
 .mb_YTPBar span {
     display: inline-block;
     font: 16px/20px Calibri, sans-serif;
-    position: relative;
+    /*position: relative;*/
     width: 30px;
     height: 25px;
     vertical-align: middle;
@@ -282,7 +282,7 @@
 /*VOLUME SLIDER*/
 
 .mb_YTPBar .simpleSlider {
-    position: relative;
+    /*position: relative;*/
     width: 100px;
     height: 10px;
     border: 1px solid #fff;
