@@ -1,4 +1,6 @@
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg"></script>
 
 <div>
@@ -34,6 +36,7 @@
 <br>
 
 <% end %>
+<span class='act-loc'><%=@city_name %></span>
 <div class="container">
 <div id="city-container">
   <div id="city-map"></div>
@@ -41,6 +44,6 @@
 </div>
 
 <script type="text/javascript">
-	getMapCityShow();
+	renderMap();
 </script>
 
