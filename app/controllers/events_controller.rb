@@ -14,9 +14,11 @@ class EventsController < ApplicationController
   end
 
   def show
+    @city_id = params[:city_id]
     @event = Event.find(params[:id])
     @creator = User.find(@event.user_id)
     @available = @event.users.all
+    @city_name = City.find(@event.city_id).name
     id = params[:id]
     render :show
   end

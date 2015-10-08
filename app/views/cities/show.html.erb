@@ -24,11 +24,15 @@
   	<% if (current_user.id != event.user_id) && (event.users.count + event.current_headcount) < event.max_headcount && !event.users.all.exists?(current_user.id)%>
   	 <%= button_to "Join", attendings_path(event) %>
   	 <% end %>
+  	 <% if (current_user.id == event.user_id) || event.users.all.exists?(current_user.id)%>
+  	 <%= button_to "Leave Event", remove_attending_path(event), method: :patch %>
+  	 <% end %>
 
 </div>
 <br>
 
 <% end %>
+<span class='act-loc'><%=@city_name %></span>
 <div class="container">
 <div id="city-container">
   <div id="city-map"></div>
@@ -36,6 +40,6 @@
 </div>
 
 <script type="text/javascript">
-	getMapCityShow();
+	renderMap();
 </script>
 
