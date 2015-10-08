@@ -1,11 +1,38 @@
 /*Custom SCSS*/
 
+.square {
+background-color: transparent;
+border: 1px solid black;
+display: inline-block;
+height: 120px;
+vertical-align: top;
+width: 118px;
+*display: inline;
+zoom: 1;
+}
+
+#photo-bg {
+  background-image: url("photo-bot.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 470px;
+}
+
+.line-height {
+ margin-top: 5%;
+}
+
+.row.hero {
+text-align: center;
+}
+
 #hero-section {
   background-image: url("bg.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  height: 850px;
+  height: 100vh;
 }
 
 /*nav-bar*/
@@ -132,8 +159,8 @@
 
 #home .main-splash .inner {
   display: block;
-  padding: 100px;
-  margin-top: 25%;
+  margin-top: 55vh;
+  position: relative;
 }
 
 #home .main-splash h1 {
