@@ -32,7 +32,7 @@ text-align: center;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  height: 820px;
+  height: 100vh;
 }
 
 /*nav-bar*/
@@ -159,8 +159,7 @@ text-align: center;
 
 #home .main-splash .inner {
   display: block;
-  padding: 100px;
-  margin-top: 25%;
+  margin-top: 55vh;
   position: relative;
 }
 
