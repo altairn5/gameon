@@ -1,5 +1,21 @@
 /*Custom SCSS*/
 
+#photo-bg {
+  background-image: url("photo-bot.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 470px;
+}
+
+.line-height {
+ margin-top: 5%;
+}
+
+.row.hero {
+text-align: center;
+}
+
 #hero-section {
   background-image: url("bg.jpg");
   background-repeat: no-repeat;
@@ -134,6 +150,7 @@
   display: block;
   padding: 100px;
   margin-top: 25%;
+  position: relative;
 }
 
 #home .main-splash h1 {
