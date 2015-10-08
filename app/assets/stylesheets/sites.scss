@@ -1,9 +1,8 @@
 /*Custom SCSS*/
 
 /*nav-bar*/
-.navbar {
+.navbarsplash {
 	position: absolute;
-	background: transparent;
 	height: auto;
 	padding: 20px 0;
 	-webkit-box-shadow: 0 0 0;
@@ -12,7 +11,7 @@
 	top: 0;
 }
 
-.navbar .navbar-inner {
+.navbarsplash .navbarsplash-inner {
   position: relative;
   width: 1000px;
   padding: 0 10px;
@@ -20,19 +19,19 @@
   margin: 0 auto;
 }
 
-.navbar .navlogo {
+.navbarsplash .navlogo {
   float: left;
   margin: 5px 0 0 5px;
   border: 0;
   max-width: 100%;
 }
 
-.navbar .navbar-login {
+.navbarsplash .navbarsplash-login {
     float: right;
     margin: 9px 0 0;
 }
 
-.navbar .navlogo>img {
+.navbarsplash .navlogo>img {
   width: 80px;
   height: 80px;
   vertical-align: middle;

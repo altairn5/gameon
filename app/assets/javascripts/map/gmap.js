@@ -41,7 +41,6 @@ $( document ).ready(function() {
 
  };
 
-
  function getEventMap(){
  		map = new google.maps.Map(document.getElementById('event-map'), {
  			center: ltlg,
