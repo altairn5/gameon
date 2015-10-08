@@ -18,6 +18,7 @@
 					 <h3><a><%=link_to city.name , city_path(city)%></a></h3>
 				</div>
 			<%end%>
+			
 			<div class="clear"></div>
 		</div>
 	</div>
@@ -25,6 +26,8 @@
 
 <script type="text/javascript">
 	getMapCitiesIndex();
-	var cityNames = "<%=@city_names%>";
-	// markerPush(cityNames);
+	var cityNamesArr = "<%=@city_names%>";
+	citiesLntLng(cityNamesArr);
+	console.log ("array of cities", cityNamesArr);
+	// markerPush(cityNamesArr);
 </script>

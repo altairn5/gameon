@@ -2,6 +2,7 @@ class CitiesController < ApplicationController
   def index
   	@cities = City.all
   	@city_names = city_names_array
+  	
   end
 
   def show
