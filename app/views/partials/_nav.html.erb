@@ -1,14 +1,29 @@
-<%= link_to "Home", root_path %>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg"></script>
 
-<% if current_user %>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="container">
+      <div class="navbar-header">
+        <%= link_to "Game On", root_path, :"data-no-turbolink" => true, :class => "navbar-brand"%>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Home", root_path, :"data-no-turbolink" => true%></li>
+          <% if @current_user %>
+        <li><%= link_to "Cities", cities_path, method: :get%></li>
+ 				<li><%=link_to "Activities", user_path(current_user), method: :get%></li>
+				<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Peter <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Edit Profile", edit_user_path(current_user), method: :get%></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to "Log out", sessions_path, method: :delete%></a></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </div>
+</nav>
 
-<%= link_to "Profile", user_path(current_user) %>
-
-<%= link_to "Logout", sessions_path, method: :delete %>
-<% else %>
-
-<%= link_to "Signup", new_user_path %>
-
-<%= link_to "Login", '/sessions/new' %>
-
-<% end %>

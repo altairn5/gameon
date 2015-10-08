@@ -7,6 +7,7 @@
 
   def current_user
     @current_user ||= session[:user_id] && User.find(session[:user_id])
+    #@current_user = nil
   end
 
   def logged_in?

@@ -11,29 +11,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151002230019) do
+ActiveRecord::Schema.define(version: 20151007020841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attendings", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "attendings", ["event_id"], name: "index_attendings_on_event_id", using: :btree
+  add_index "attendings", ["user_id"], name: "index_attendings_on_user_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "image_url"
   end
 
   create_table "events", force: :cascade do |t|
     t.string   "address"
-    t.date     "start_date"
-    t.time     "start_time"
     t.integer  "max_headcount"
     t.integer  "current_headcount"
     t.string   "description"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "city_id"
+    t.integer  "user_id"
+    t.integer  "sport_id"
+    t.string   "name"
+    t.date     "date"
+    t.time     "time"
   end
 
   create_table "sports", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,8 +59,17 @@ ActiveRecord::Schema.define(version: 20151002230019) do
     t.string   "last_name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "age"
+    t.string   "gender"
+    t.integer  "city_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
+  add_foreign_key "attendings", "events"
+  add_foreign_key "attendings", "users"
 end

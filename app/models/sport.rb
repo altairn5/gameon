@@ -1,4 +1,3 @@
 class Sport < ActiveRecord::Base
-	belongs_to :users
-	belongs_to :events
+	has_many :events
 end

@@ -1,12 +1,8 @@
 class SitesController < ApplicationController
-  
   def index
-  end
-
-  def about
-  end
-
-  def contact
+	 	@user = User.new
+	 	@disable_nav = true
+	 	render :index
   end
 
 end
