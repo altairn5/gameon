@@ -38,7 +38,7 @@ $( document ).ready(function() {
 
 
  function getActMap(){
- 		map = new google.maps.Map(document.getElementById('city-map'), {
+ 		map = new google.maps.Map(document.getElementById('eventshow-city-map'), {
  			center: ltlg,
  			zoom: 10
  		});

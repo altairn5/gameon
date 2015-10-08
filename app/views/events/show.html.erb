@@ -9,7 +9,7 @@
 <!-- Displays map -->
 <div class="container">
 	<div id="eventshow-map-container">
-  		<div id="city-map"></div>
+  		<div id="eventshow-city-map"></div>
 	</div>
 </div>
 <!-- call functions that displays map -->
@@ -29,7 +29,7 @@
 		<div class="col-xs-2 col-sm-2 col-md-2" >
 			<span >
 				<%= image_tag @creator.avatar.url(:thumb), :class=>"img-circle" %>
-			</spam>
+			</span>
 			<p>Host: <br><%= link_to (@creator.first_name+" "+@creator.last_name), user_path(@event.user_id)%>
 			</p>
 		</div>
