@@ -29,7 +29,7 @@
 						zoom: 4
 					 }
 	makeMap('map-canvas', map_config);
-	var cityNamesArr = <%== @city_names %>;
+	var cityNamesArr = <%= raw @city_names %>;
 	citiesLntLng(cityNamesArr);
 	console.log ("array of cities", cityNamesArr);
 </script>
