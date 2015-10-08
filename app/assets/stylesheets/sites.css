@@ -1,12 +1,11 @@
 /*Custom SCSS*/
 
-body{
+#hero-section {
   background-image: url("bg.jpg");
   background-repeat: no-repeat;
-  background-attachment: fixed;
   background-position: center center;
   background-size: cover;
-  
+  height: 850px;
 }
 
 /*nav-bar*/
@@ -117,10 +116,10 @@ body{
 
 .main-splash {
   text-align: center;
-  position: fixed;
+  position: inherit;
   left: 50%;
   margin-top: -30px;
-  display: inline-block;
+  display: inline;
   max-width: 900px;
   z-index: 1;
   color: #fff;
@@ -133,7 +132,8 @@ body{
 
 #home .main-splash .inner {
   display: block;
-  padding: 0;
+  padding: 100px;
+  margin-top: 25%;
 }
 
 #home .main-splash h1 {

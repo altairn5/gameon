@@ -9,9 +9,7 @@
   <%= yield :head %>
 </head>
 <body>
-	<div>
 		<%= render "partials/nav"  unless @disable_nav %>
-	</div>
 		<%= yield %>
 </body>
 </html>

@@ -1,97 +1,41 @@
-<div id="bgndVideo" class="player" 
-	data-property="{videoURL:'http://youtu.be/uw08j-yOfcE',containment:'body',autoPlay:true, mute:true, startAt:5, opacity:1, addRaster:true, stopAt:75.5, showControls:false, stopMovieOnBlur:false}">
-</div>
-<div class="navbarsplash">
-	<div class="navbarsplash-inner">
-		<div class="navlogo"><%=image_tag('logo.png')%></div>
-			<div class="navbarsplash-login">
-        <%if current_user %>
-          <a><%= link_to "Cities", cities_path, method: :get, :class => "btn-signup"%></a> 
-          <a><%=link_to "Activities", user_path(current_user), method: :get, :class => "btn-signup"%></a>
-          <a><%=link_to "Log out", sessions_path, method: :delete, :class => "btn-login"%></a>
-        <% else %>
-				<a href="#signupModal" data-toggle="modal" data-toggle-flip data-toggle-flip-target="#registerFlip" data-track-event="SignUpModal,TopbarBtn" class="btn-signup" id="registerBtn">Sign up</a>
-				<a href="#loginModal" data-toggle="modal" data-toggle-flip data-toggle-flip-target="#loginFlip" data-directive="login" data-track-event="LogInModal,TopbarBtn" class="btn-login" id="loginBtn"><i class="icon-user"></i> Log in</a>
-			</div>
-      <% end %>
-	</div>
-</div>
-<section id="home" class="video">
-	<div class="main-splash">
-		<div class="inner">
-		<h1> GameOn </h1>
-		<h2>Think Tinder, for sports. Join. Connect. Play.</h2>
-        <%if current_user%>
-          <a><%= link_to "Jump In!", cities_path, method: :get, :class => "btn-primary"%></a>
-        <% else %>
-      <a href="#signupModal" data-toggle="modal" data-toggle-flip data-toggle-flip-target="#registerFlip" data-track-event="SignUpModal,TopbarBtn" class="btn-primary" id="registerBtn">Start Now!</a>
-      <% end %>
-      <p>It's free ;)</p>
-		</div>
-	</div>
-</section>
-<!-- Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="false">
-  <div class="modal-dialog flip-wrapper">
-    <div class="modal-content flip active" id="loginFlip">
-      <div class="modal-body">
-        <header class="header">
-          <p class="title">Log in</p>
-        </header>
-        <div class="alert alert-danger hide" id="errorWrapperLogin"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>
-        <div class="form-controls">
-          <div class="form-controls">
-            <a id="auth-loginlink" href="#" class="btn-secondary btn-block btn-big" data-track-event="SignUpModal,SignUpWithFacebook"><i class="icon-facebook"></i>&nbsp;&nbsp;Log in with Facebook</a>
-          </div>
-          <div class="line-form-separator"></div>
-          <div class="form-group">
-            <%= form_for @user, url: "/sessions", method: "post" do |f| %>
-            <%= f.text_field :email, placeholder: "Email", :class => "form-control" %><br>
-            <%= f.password_field :password, placeholder: "Password", :class => "form-control" %>
-          </div>
-          <div class="form-controls">
-            <%= f.submit "Sign In", :class => "btn-primary btn-block" %>
-          </div>
-						<% end %> 
-         </div>
-      </div>
+<div id="sites-index-page-wrapper">
+  <section id="hero-section">
+    <div id="bgndVideo" class="player" 
+    	data-property="{videoURL:'http://youtu.be/uw08j-yOfcE',containment:'self',autoPlay:true, mute:true, startAt:5, opacity:1, addRaster:true, stopAt:75.5, showControls:false, stopMovieOnBlur:false}">
     </div>
-  </div>
-</div>
-<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="false">
-  <div class="modal-dialog flip-wrapper">
-    <div class="modal-content flip active" id="loginFlip">
-      <div class="modal-body">
-        <header class="header">
-          <p class="title">Sign up</p>
-        </header>
-        <div class="alert alert-danger hide" id="errorWrapperLogin"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>
-        <div class="form-controls">
-          <div class="form-controls">
-            <a id="auth-loginlink" href="#" class="btn-secondary btn-block btn-big" data-track-event="SignUpModal,SignUpWithFacebook"><i class="icon-facebook"></i>&nbsp;&nbsp;Sign up with Facebook</a>
-          </div>
-          <div class="line-form-separator"></div>
-          <div class="form-group">
-          <%= form_for @user, :html => { :multipart => true } do |f| %>
-            <% if @user.errors.any? %> 
-              <div id="error_explanation">
-                <h2><%= pluralize(@user.errors.count, "error") %> prohibited sign up:</h2>
-                <ul><% @user.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
-              </div>
+    <div class="navbarsplash">
+    	<div class="navbarsplash-inner">
+    		<div class="navlogo"><%=image_tag('logo.png')%></div>
+    			<div class="navbarsplash-login">
+            <%if current_user %>
+              <a><%= link_to "Cities", cities_path, method: :get, :class => "btn-signup"%></a> 
+              <a><%=link_to "Activities", user_path(current_user), method: :get, :class => "btn-signup"%></a>
+              <a><%=link_to "Log out", sessions_path, method: :delete, :class => "btn-login"%></a>
+            <% else %>
+    				<a href="#signupModal" data-toggle="modal" data-toggle-flip data-toggle-flip-target="#registerFlip" data-track-event="SignUpModal,TopbarBtn" class="btn-signup" id="registerBtn">Sign up</a>
+    				<a href="#loginModal" data-toggle="modal" data-toggle-flip data-toggle-flip-target="#loginFlip" data-directive="login" data-track-event="LogInModal,TopbarBtn" class="btn-login" id="loginBtn"><i class="icon-user"></i> Log in</a>
+    			</div>
           <% end %>
-            <% end %>
-              <%= f.text_field :first_name, placeholder: "First Name", :class => "form-control" %><br>
-              <%= f.text_field :last_name, placeholder: "Last Name", :class => "form-control" %><br>
-              <%= f.text_field :email, placeholder: "Email", :class => "form-control" %><br>
-              <%= f.password_field :password, placeholder: "Password", :class => "form-control" %><br>
-              <%= f.password_field :password_confirmation, placeholder: "Confirm Password", :class => "form-control" %><br>
-            <div class="form-group">
-              <%= f.submit "Sign In", :class => "btn-primary btn-block" %>
-            </div>
-              <%end%>
-         </div>
-      </div>
+    	</div>
     </div>
+    <section id="home" class="video">
+    	<div class="main-splash row">
+    		<div class="inner">
+    		<h1> GameOn </h1>
+    		<h2>Think Tinder, for sports. Join. Connect. Play.</h2>
+            <%if current_user%>
+              <a><%= link_to "Jump In!", cities_path, method: :get, :class => "btn-primary"%></a>
+            <% else %>
+          <a href="#signupModal" data-toggle="modal" data-toggle-flip data-toggle-flip-target="#registerFlip" data-track-event="SignUpModal,TopbarBtn" class="btn-primary" id="registerBtn">Start Now!</a>
+          <% end %>
+          <p>It's free ;)</p>
+    		</div>
+    	</div>
+    </section>
+  </section>
+  <div class="row" style="height: 1000px">
+    TEST
   </div>
+  <!-- Modal -->
+  <%= render "partials/modal" %>
 </div>
