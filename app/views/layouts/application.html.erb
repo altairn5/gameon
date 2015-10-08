@@ -8,14 +8,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <%= yield :head %>
 </head>
-
 <body>
-<div>
-<%= render "partials/nav"  unless @disable_nav %>
-
-
-</div>
-	   <%= yield %>
-
+	<div>
+		<%= render "partials/nav"  unless @disable_nav %>
+	</div>
+		<%= yield %>
 </body>
 </html>

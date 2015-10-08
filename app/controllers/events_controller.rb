@@ -28,14 +28,12 @@ class EventsController < ApplicationController
     event_params = params.require(:event).permit(:name, :address, :max_headcount, :current_headcount, :description, :date, :time, :sport_id)
     event_params[:user_id] = user.id
     event_params[:city_id] = params[:id]
- 
     @event = Event.new(event_params)
-
-      if @event.save
-        redirect_to "/cities/#{event_params[:city_id]}"
-      else 
-        render :new
-      end 
+    if @event.save
+      redirect_to "/cities/#{event_params[:city_id]}"
+    else 
+      render :new
+    end 
   end
 
 
@@ -56,10 +54,8 @@ class EventsController < ApplicationController
       #redirect to show
       redirect_to "/events/#{event_id}"
     else
-
       render :edit
     end  
-
   end
 
   def destroy
@@ -68,6 +64,5 @@ class EventsController < ApplicationController
     event.destroy
     redirect_to "/cities"
   end
-
-
+  
 end
