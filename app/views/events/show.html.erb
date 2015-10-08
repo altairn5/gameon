@@ -106,7 +106,7 @@
 
 
 
-<% if (current_user.id == @creator.id) || @available.exists?(current_user.id)%>
+<% if (current_user.id != @creator.id) && @available.exists?(current_user.id)%>
 <%= button_to "Leave Event", remove_attending_path(@event), method: :patch %>
 <% end %>
 
