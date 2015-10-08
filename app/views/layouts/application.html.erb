@@ -9,12 +9,12 @@
   <%= yield :head %>
 
 </head>
-<%= render "partials/nav"  unless @disable_nav %>
-<body>
 
-	<div class="container body-content">
+<body>
+<div>
+<%= render "partials/nav"  unless @disable_nav %>
+</div>
 	   <%= yield %>
-	</div>
 
 </body>
 </html>

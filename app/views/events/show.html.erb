@@ -1,47 +1,49 @@
-
+<div class="page-container">
 <div class="eventshow-map-container">
 
 </div>
 
 <div>
 	<h1 class="overflow h3 space-1 text-center"><%=@event.sport.name%>: <%=@event.name %></h1>
-	<h5 class="space-2 text-muted text-center"><%= @event.address %> (<%= @event.city %>)</h5>
+	<h5 class="space-2 text-muted text-center"><%= @event.address %> (<%= @event.city.name %>)</h5>
 </div>
 <br>
 <div id="event-stats">
-
+ 
 	<div class="row row-condensed text-muted text-center icons" >
-		<div class="col-xs-3 col-sm-3 col-md-3" >
-			<i class="fa fa-user">
-				<p>Host: <%= link_to (@creator.first_name+" "+@creator.last_name), user_path(@event.user_id)%>
-				</p>
-			</i>
+		<div class="col-xs-2 col-sm-2 col-md-2" >
+			<span >
+				<%= image_tag @creator.avatar.url(:thumb), :class=>"img-circle" %>
+			</spam>
+			<p>Host: <br><%= link_to (@creator.first_name+" "+@creator.last_name), user_path(@event.user_id)%>
+			</p>
 		</div>
 
-		<div class="col-xs-3 col-sm-3 col-md-3" >
-			<i class="fa fa-user">
-				<p>Date: <%= @event.date.strftime("%b %d, %Y")%>
+		<div class="col-xs-2 col-sm-2 col-md-2" >
+			<i class="fa fa-calendar fa-2x"></i>
+				<p>Date: <br><%= @event.date.strftime("%b %d, %Y")%>
 				</p>
-			</i>
+			
 		</div>
 		
-		<div class="col-xs-3 col-sm-3 col-md-3" >
-			<i class="fa fa-user">
-				<p>Time: <%= @event.time.strftime("%I:%M%p") %>
+		<div class="col-xs-2 col-sm-2 col-md-2" >
+			<i class="fa fa-clock-o fa-2x">	</i>
+				<p>Time: <br><%= @event.time.strftime("%I:%M%p") %>
 				</p>
-			</i>
+		
 		</div>
-		<div class="col-xs-3 col-sm-3 col-md-3" >
-			<i class="fa fa-user">
-				<p>Current Players: <%=@event.users.count + @event.current_headcount%> Players Currently
+		<div class="col-xs-2 col-sm-2 col-md-2" >
+			<i class="fa fa-users fa-2x"></i>
+				<p><%=@event.users.count + @event.current_headcount%> Players <br>Currently
 				</p>
-			</i>
+			
 		</div>
-		<div class="col-xs-3 col-sm-3 col-md-3" >
-			<i class="fa fa-user">
-				<p>Needed <%=@event.max_headcount - @event.current_headcount%> More Players
+
+		<div class="col-xs-2 col-sm-2 col-md-2" >
+			<i class="fa fa-user-plus fa-2x"></i>
+				<p>Needed <%=@event.max_headcount - @event.current_headcount%> More <br>Players
 				</p>
-			</i>
+	
 		</div>
 
 
@@ -52,31 +54,34 @@
 
 
 <div id="event-description">
-	<h4 class="row-space-4 text-center"> About this activity </h2>
+	<h4 class="row-space-4 text-center"> About this activity
+			<%if (@event.users.count + @event.current_headcount) == @event.max_headcount%>
+				<span id="full-status">(FULL)</span>
+			<%else %>
+				<span id="open-status">(OPEN)</span>
+			<%end%>
+	</h4>
 	<p><%=@event.description%></p>
 </div>
 
-
-<h6> Participants: </h6>
+<div id="Participants">
+	<h4 class="row-space-4"> 
+		Current Participants: 
+			<span class='list-group'>
+				<% @event.users.each do |attendee| %>
+				  	 <%= link_to attendee.first_name + " " + attendee.last_name, user_path(attendee.id)%> |
+				<% end %>
+			</span>
+	</h4>
 <div>
-  <% @event.users.each do |attendee| %>
-  	<div class='list-group'>
-  	 <p> <%= link_to attendee.first_name + " " + attendee.last_name, user_path(attendee.id) %> </p>
+
 </div>
-<% end %>
 
-<h4>Status:  
-		<%if (@event.users.count + @event.current_headcount) == @event.max_headcount%>
-	    	FULL 
-		<%else %> 
-	   		OPEN
-		<%end%>
-</h4>
-
-
-<% if (current_user.id != @creator.id) && (@event.users.count + @event.current_headcount) < @event.max_headcount && !@available.exists?(current_user.id)%>
-<%= button_to "Join", attendings_path(@event) %>
-<% end %>
+<span class="text-center">
+	<% if (current_user.id != @creator.id) && (@event.users.count + @event.current_headcount) < @event.max_headcount && !@available.exists?(current_user.id)%>
+	<%= button_to "Join", attendings_path(@event) %>
+	<% end %>
+</span>
 
 <p class="text-right">
 	<% if @event.user_id == current_user.id %>

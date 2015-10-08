@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .eventshow-map-container {
-	height: 200px;
+	height: 150px;
    border-radius: 16px 16px;
    border-color: #fff;
    border-style: solid;
@@ -18,3 +18,15 @@
 .fa-user {
 	width: 100%
 	}
+
+.page-container {
+   padding-bottom: 90px;
+   padding-right: 50px;
+   padding-left: 50px;
+}
+
+.list-group {
+   font-size:15px;
+   font-weight:normal;
+}
+
