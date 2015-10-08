@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 
+=======
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg"></script>
+>>>>>>> 2d1957a03221866c862550b52898de7492a4c3c7
 <div>
 	<h1><%= @city.name%></h1>
 </div>
@@ -27,8 +31,21 @@
   	<% if (current_user.id != event.user_id) && (event.users.count + event.current_headcount) < event.max_headcount && !event.users.all.exists?(current_user.id)%>
   	 <%= button_to "Join", attendings_path(event) %>
   	 <% end %>
+  	 <% if (current_user.id == event.user_id) || event.users.all.exists?(current_user.id)%>
+  	 <%= button_to "Leave Event", remove_attending_path(event), method: :patch %>
+  	 <% end %>
 
 </div>
 <br>
 
 <% end %>
+<div class="container">
+<div id="city-container">
+  <div id="city-map"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+	getMapCityShow();
+</script>
+

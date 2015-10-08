@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/sessions/new', to: 'sessions#new'
   post '/sessions', to: 'sessions#create'
   delete '/sessions', to: "sessions#destroy"
-
+  
   get '/events', to: "events#index", as: "events"
 
   get '/events/:id', to: 'events#show', as: "event"
@@ -13,8 +13,12 @@ Rails.application.routes.draw do
   get '/events/:id/edit', to: 'events#edit', as: "edit_event"
 
   post "/events", to: "events#create"
+
+  patch "/users/:event_id", to: "attendings#edit", as: "remove_attending"
   #the update route 
   patch "/events/:id", to: "events#update"
+
+
 
   #the destroy route 
   delete "/events/:id", to: "events#destroy"
@@ -25,6 +29,9 @@ Rails.application.routes.draw do
   post "/events/:event_id", to: "attendings#create", as: "attendings"
 
   # post to events
+  # deleting user from event
+
+  
   
   resources :users
   
