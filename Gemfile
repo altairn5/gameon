@@ -31,6 +31,8 @@ gem 'simple_form'
 
 gem 'ffaker'
 
+gem 'stream-ruby'
+
 gem "paperclip", "~> 4.3"
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -51,6 +53,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
-ruby "2.2.1"
-

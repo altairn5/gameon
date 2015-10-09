@@ -1,9 +1,44 @@
 /*Custom SCSS*/
 
+.square {
+background-color: transparent;
+border: 1px solid black;
+display: inline-block;
+height: 120px;
+vertical-align: top;
+width: 118px;
+*display: inline;
+zoom: 1;
+}
+
+#photo-bg {
+  background-image: url("photo-bot.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 470px;
+}
+
+.line-height {
+ margin-top: 5%;
+}
+
+.row.hero {
+text-align: center;
+}
+
+#hero-section {
+  background-image: url("bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 100vh;
+}
+
 /*nav-bar*/
-.navbar {
+
+.navbarsplash {
 	position: absolute;
-	background: transparent;
 	height: auto;
 	padding: 20px 0;
 	-webkit-box-shadow: 0 0 0;
@@ -12,27 +47,34 @@
 	top: 0;
 }
 
-.navbar .navbar-inner {
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 2px;
+    border: 1px solid transparent;
+}
+
+.navbarsplash .navbarsplash-inner {
   position: relative;
   width: 1000px;
-  padding: 0 10px;
+  padding: 0 0px;
   height: auto;
   margin: 0 auto;
 }
 
-.navbar .navlogo {
+.navbarsplash .navlogo {
   float: left;
   margin: 5px 0 0 5px;
   border: 0;
   max-width: 100%;
 }
 
-.navbar .navbar-login {
+.navbarsplash .navbarsplash-login {
     float: right;
     margin: 9px 0 0;
 }
 
-.navbar .navlogo>img {
+.navbarsplash .navlogo>img {
   width: 80px;
   height: 80px;
   vertical-align: middle;
@@ -108,10 +150,10 @@
 
 .main-splash {
   text-align: center;
-  position: fixed;
+  position: inherit;
   left: 50%;
   margin-top: -30px;
-  display: inline-block;
+  display: inline;
   max-width: 900px;
   z-index: 1;
   color: #fff;
@@ -124,7 +166,8 @@
 
 #home .main-splash .inner {
   display: block;
-  padding: 0;
+  margin-top: 55vh;
+  position: relative;
 }
 
 #home .main-splash h1 {
@@ -138,12 +181,12 @@
   transition: all .4s;
 }
 #home .main-splash h2 {
-    font-family: 'geogrotesque-regular';
-    font-size: 21px;
-    letter-spacing: 1px;
-    margin-bottom: 34px;
-    margin-top: 12px;
-    line-height: 26px;
+  font-family: 'geogrotesque-regular';
+  font-size: 21px;
+  letter-spacing: 1px;
+  margin-bottom: 34px;
+  margin-top: 12px;
+  line-height: 26px;
 }
 
 #home .main-splash h1, #home .main-splash h2 {
@@ -203,71 +246,71 @@
 }
 
 #loginModal .modal-dialog {
-    width: 460px;
+  width: 460px;
 }
 
 #signupModal .modal-dialog {
-    width: 460px;
+  width: 460px;
 }
 
 .modal.in .modal-dialog {
-    transform: translate(0, 0);
+  transform: translate(0, 0);
 }
 
 .modal.fade .modal-dialog {
 
-    transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
 }
 
 .modal-dialog {
-    position: relative;
+  position: relative;
 }
 
 .flip-wrapper {
-    -webkit-perspective: 1300;
+  -webkit-perspective: 1300;
 }
 
 .flip.active {
-    position: relative;
-    display: block !important;
-    height: auto;
-    top: auto;
-    transform: rotateY(0deg);
+  position: relative;
+  display: block !important;
+  height: auto;
+  top: auto;
+  transform: rotateY(0deg);
 }
 
 .modal-content {
-    border-radius: 3px;
-        background-color: #fff;
-    border: 1px solid rgba(0,0,0,0.2);
-    background-clip: padding-box;
-    outline: none;
+  border-radius: 3px;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.2);
+  background-clip: padding-box;
+  outline: none;
 }
 
 .flip {
-    transform-origin: center center;
-    backface-visibility: hidden;
+  transform-origin: center center;
+  backface-visibility: hidden;
 }
 
 #loginModal .modal-body {
-    padding: 30px 50px;
+  padding: 30px 50px;
 }
 
 #signupModal .modal-body {
-    padding: 30px 50px;
+  padding: 30px 50px;
 }
 
 .modal-body {
-    position: relative;
+  position: relative;
 }
 
 #loginModal .header {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 #signupModal .header {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 /*header {
@@ -313,27 +356,27 @@
 }*/
 
 .hide {
-    display: none !important;
+  display: none !important;
 }
 
 
 button.close {
-    padding: 0;
-    cursor: pointer;
-    background: transparent;
-    border: 0;
-    -webkit-appearance: none;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
 }
 
 .close {
-    float: right;
-    font-size: 21px;
-    font-weight: bold;
-    line-height: 1;
-    color: #000;
-    text-shadow: 0 1px 0 #fff;
-    opacity: .2;
-    filter: alpha(opacity=20);
+  float: right;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .2;
+  filter: alpha(opacity=20);
 }
 
 /*button, select {
@@ -364,10 +407,10 @@ button {
     cursor: pointer;
 }*/
 
-	.btn-big {
+.btn-big {
 	font-size: 17px;
 	padding: 12px 40px;
-	}
+}
 
 .btn-secondary {
 	background: #274bb3;
@@ -383,7 +426,7 @@ button {
 	border: 0;
 	-webkit-transition: all .1s;
 	transition: all .1s;
-	}
+}
 
 .btn-secondary:hover, .btn-secondary:focus {
 	text-decoration: none;
@@ -394,11 +437,11 @@ button {
 }
 
 .btn-block {
-    display: block;
-    width: 100%;
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: 0;
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
 }
 
 /*a {
@@ -411,24 +454,24 @@ a {
 }*/
 
 a, a:focus, a:hover, a:active {
-    outline: 0;
+  outline: 0;
 }
 
 .line-form-separator {
-    border-bottom: 1px solid #e2e2e2;
-    margin: 15px 0;
+  border-bottom: 1px solid #e2e2e2;
+  margin: 15px 0;
 }
 
 .form-group {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 #loginModal .label {
-    color: #4E4A4A;
+  color: #4E4A4A;
 }
 
 #signupModal .label {
-    color: #4E4A4A;
+  color: #4E4A4A;
 }
 
 /*form label {
@@ -450,29 +493,29 @@ a, a:focus, a:hover, a:active {
   cursor: pointer;
 }*/
 .form-group input {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .form-control {
-    color: #858585;
+  color: #858585;
 }
 
 .form-control {
-    display: block;
-    width: 100%;
-    height: 38px;
-    padding: 8px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #151212;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  display: block;
+  width: 100%;
+  height: 38px;
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #151212;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
 /*input, button, select, textarea {
@@ -500,37 +543,37 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 }*/
 
 .btn-block {
-    margin-left: 0;
+  margin-left: 0;
 }
 
 .btn-primary {
-    background: #21a124;
-    color: #fff;
-    border-radius: 3px;
-    font-family: 'geogrotesque-medium';
-    min-width: 120px;
-    text-align: center;
-    font-size: 16px;
-    padding: 9px 9px;
-    display: inline-block;
-    margin: 0 0 5px 5px;
-    border: 0;
-    -webkit-transition: all .1s;
-    transition: all .1s;
+  background: #21a124;
+  color: #fff;
+  border-radius: 3px;
+  font-family: 'geogrotesque-medium';
+  min-width: 120px;
+  text-align: center;
+  font-size: 16px;
+  padding: 9px 9px;
+  display: inline-block;
+  margin: 0 0 5px 5px;
+  border: 0;
+  -webkit-transition: all .1s;
+  transition: all .1s;
 }
 
 .btn-block {
-    display: block;
-    width: 100%;
-    padding-left: 0;
-    padding-right: 0;
-    margin-left:0;
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left:0;
 }
 
 .btn-primary {
-    color: #fff;
-    background-color: #21a124;
-    border-color: #21a124;
+  color: #fff;
+  background-color: #21a124;
+  border-color: #21a124;
 }
 
 /*input, button, select, textarea {
@@ -550,18 +593,18 @@ button, input, optgroup, select, textarea {
 }*/
 
 #loginModal .imuser {
-    color: #858585;
-    font-size: 14px;
+  color: #858585;
+  font-size: 14px;
 }
 
 #signupModal .imuser {
-    color: #858585;
-    font-size: 14px;
+  color: #858585;
+  font-size: 14px;
 }
 
 .form-controls.text-center {
-	text-align: center;
-  margin-top: 20px;
+text-align: center;
+margin-top: 20px;
 }
 
 

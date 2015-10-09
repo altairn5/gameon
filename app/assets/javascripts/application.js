@@ -16,4 +16,6 @@
 //= require bootstrap
 //= require jquery.mb.YTPlayer
 //= require map/gmap
+//= require instafeed
+//= require chat
 //= require_tree .

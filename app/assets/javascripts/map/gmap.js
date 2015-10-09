@@ -1,81 +1,135 @@
 var map;
 var markers = [];
-var LatLng = { lat: 37.78, lng: -122.44};
-// var maparr = [{name: "San Francisco", LatLng:{ lat: 37.78, lng: -122.44}, description: "San Francisco, officially the City and County of San Francisco, is the cultural, commercial, and financial center of Northern California and the only consolidated city-county in California." },
-// {name: "london", LatLng:{ lat: 51.50, lng: 0.12}, description: "London is the capital and most populous city of England and the United Kingdom.Standing on the River Thames, London has been a major settlement for two millennia, its history going back to its founding by the Romans."},
-// {name: "New York", LatLng:{ lat: 40.71, lng: -74.00},  description: "New York – often called New York City or the City of New York to distinguish it from the State of New York, of which it is a part – is the most populous city in the United States[1] and the center of the New York metropolitan area, the premier gateway for legal immigration to the United States[9][10][11] and one of the most populous urban agglomerations in the world."},
-// {name: "Rome", LatLng:{ lat: 41.9, lng: 12.50}, description: "Rome is a city and special comune (named 'Roma Capitale') in Italy. Rome is the capital of Italy and of the Lazio region. With 2.9 million residents in 1,285 km2 (496.1 sq mi), it is also the country's largest and most populated comune and fourth-most populous city in the European Union by population within city limits."},
-// {name: "Istanbul", LatLng:{ lat: 41.01, lng: 28.95}, description: "Istanbul, once known as Constantinople, is the most populous city in Turkey, and the country's economic, cultural, and historical center. Istanbul is a transcontinental city in Eurasia, straddling the Bosphorus strait between the Sea of Marmara and the Black Sea."},
-// {name: "Austin", LatLng:{ lat: 30.25, lng: -97.75}, description:  "Austin is the capital of the US state of Texas and the seat of Travis County. Located in Central Texas, Austin is the 11th-most populous city in the United States and the fourth-most populous city in Texas and in the American South."},
-// {name: "Gibraltar", LatLng:{ lat: 36.14, lng: -5.35}, description: "Gibraltar is a British Overseas Territory located on the southern end of the Iberian Peninsula at the entrance of the Mediterranean"},
-// {name: "Vietnam", LatLng:{ lat: 21.03, lng: 105.85}, description: "officially the Socialist Republic of Vietnam (SRV; Vietnamese: Cộng hòa Xã hội chủ nghĩa Việt Nam (About this sound listen)), is the easternmost country on the Indochina Peninsula in Southeast Asia."}]
+var LatLng = { lat: 37.09, lng: -95.71};
+var ltlg;
+var arrayOfCities = [];
+//var for autocomplete
+var placeSearch;
+var autocomplete;
 
 $( document ).ready(function() {
-      $(".player").YTPlayer();
+	$(".player").YTPlayer();
 });
-
-
-// $(document).ready( function (){
-// 	// markerPush(maparr)
-// 	getMapCitiesIndex();
-// 	getMapCityShow();
-// 	setMapOnAll(map);
-
-// });
-
-
-
-function getMapCitiesIndex () {
-
-	map = new google.maps.Map(document.getElementById('map-canvas'), {
-		center: LatLng,
-		zoom: 3
-	});
+ // ex: https://maps.googleapis.com/maps/api/geocode/xml?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_KEY
+	function renderMap(loc, htmlTag){
 		
-};
+		var address = loc.replace(" ","+") || "SanFrancisco";	
+		$.get("https://maps.googleapis.com/maps/api/geocode/json?", { "address" : address}, function (data) {
+		ltlg = data.results[0].geometry.location;
 
-function getMapCityShow(){
-	map = new google.maps.Map(document.getElementById('city-map'), {
-		center: LatLng,
-		zoom: 11
-	});
-	console.log("sanitywhat?")
-};
+     //function below needs to be called at the end of callback function
+		MakeCityEventMap(ltlg, htmlTag);
 
-function markerPush(arr) {
-	arr.forEach(function(el) {
-		link = el.name.replace(/\s/g, '-')
-		var marker = new google.maps.Marker({
-			position: el.LatLng,
-			map: map,
-			url: "http://localhost:3000/cities/" + link,
-			title: el.name
-		})
-		var info = createInfoWindow(el.description);
-		google.maps.event.addListener(marker, 'mouseover', function() {
-			info.open(map,marker);
 		});
-		google.maps.event.addListener(marker, 'mouseout', function() {
-			info.close(map,marker);
-		});
-		google.maps.event.addListener(marker, 'click', function() {
-			window.location.href =  marker.url;
-		});
-		markers.push(marker)
-	});
-};
-
-
-
-function setMapOnAll(map) {
-	for (var i = 0; i < markers.length; i++) {
-		markers[i].setMap(map);
 	}
+	
+ 	function MakeCityEventMap(point, idHTMLtag){
+ 		map = new google.maps.Map(document.getElementById(idHTMLtag), {
+ 			center: point,
+ 			zoom:14
+
+ 		});
+ 		markerPush(point)
+ 	}
+
+	function makeMap(selector, config) {
+		map = new google.maps.Map(document.getElementById(selector), {
+			center: config.center,
+			zoom: config.zoom || 10
+		});
+	}
+
+	//functions finds the latitude and longitude of the cities passed in the array CityNames
+	function citiesLntLng(cityNames){
+		cityNames.forEach(function(city){
+	 		var oneCity = city.replace(" ","+");
+	 		//Ajax request to find the lat & long of the array of cities that I am passing
+		 	$.get("https://maps.googleapis.com/maps/api/geocode/json?" , { "address" : oneCity}, function (response){
+		 		LatLng = response.results[0].geometry.location;
+		 		console.log("this is lat and long" , LatLng);
+		 		//Ajax response cannot be predicted. Passing answer as received as arg to the markerPush function
+		 		markerPush(LatLng)
+		 	});	
+		});
+		
+	}
+		//function builds marker when receive. No need to build an arrays of objects
+	function markerPush(latsNlongs){
+			var marker = new google.maps.Marker({
+				position: latsNlongs,
+				map: map
+			});
+ 	}
+
+// function locHandler () { 
+	// below is only good for an array
+
+//         var locArray = $('.act-loc').val().split(" ");
+//         var addr = locArray.join("+");
+//         $.get("https://maps.googleapis.com/maps/api/geocode/json?", { "address" : addr}, function (data) {
+//             LatLng = data.results[0].geometry.location;
+            
+//         getMap();
+//         })
+// }
+
+
+// function markerPush(cityNames) {
+// 	var pinArr = cityNames;
+//    	console.log ("this is pin-loc", pinArr);
+// 	pinArr.forEach(function(el) {
+// 		link = el.name.replace(/\s/g, '-')
+// 		var marker = new google.maps.Marker({
+// 			position: el.LatLng,
+// 			map: map,
+// 			url: "http://localhost:3000/cities/" + link,
+// 			title: el.name
+// 		})
+// 		var info = createInfoWindow(el.description);
+// 		google.maps.event.addListener(marker, 'mouseover', function() {
+// 			info.open(map,marker);
+// 		});
+// 		google.maps.event.addListener(marker, 'mouseout', function() {
+// 			info.close(map,marker);
+// 		// });
+// 		google.maps.event.addListener(marker, 'click', function() {
+// 			window.location.href =  marker.url;
+// 		});
+// 		markers.push(marker)
+// 		console.log (markers);
+// 	});
+// };
+var defaultBounds; 
+defaultBounds = new google.maps.LatLngBounds(
+new google.maps.LatLng(71.3867745,-66.9502861),
+new google.maps.LatLng(18.9110642,172.4458955));
+
+var options = {
+	bounds: defaultBounds
 };
 
-function createInfoWindow(text){
-	var infowindow = new google.maps.InfoWindow({
-		content: text
-	});
-	return infowindow;
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search to geographical
+  // location types.
+  autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')), options);
+
 }
+
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+// function geolocate() {
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(function(position) {
+//       var geolocation = {
+//         lat: position.coords.latitude,
+//         lng: position.coords.longitude
+//       };
+//       var circle = new google.maps.Circle({
+//         center: geolocation,
+//         radius: position.coords.accuracy
+//       });
+//       autocomplete.setBounds(circle.getBounds());
+//     });
+//   }
+// }
+
