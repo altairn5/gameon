@@ -10,7 +10,7 @@ $( document ).ready(function() {
  // ex: https://maps.googleapis.com/maps/api/geocode/xml?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_KEY
 	function renderMap(loc, htmlTag){
 		
-		var address = loc.replace(" ","+");	
+		var address = loc.replace(" ","+") || "SanFrancisco";	
 		$.get("https://maps.googleapis.com/maps/api/geocode/json?", { "address" : address}, function (data) {
 		ltlg = data.results[0].geometry.location;
 
