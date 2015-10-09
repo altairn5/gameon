@@ -31,6 +31,8 @@ gem 'simple_form'
 
 gem 'ffaker'
 
+gem 'stream-ruby'
+
 gem "paperclip", "~> 4.3"
 # Use Unicorn as the app server
 # gem 'unicorn'
