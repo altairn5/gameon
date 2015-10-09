@@ -1,5 +1,5 @@
-<div id="event-map"></div>
 
+<div id="event-map"></div>
 
 <div>
 	<h1 class="overflow h3 space-1 text-center"><%=@event.sport.name%>: <%=@event.name %></h1>
@@ -67,11 +67,9 @@
 	<% end %>
  	<span class="links"><%= link_to 'Back', city_path(@event.city_id) %></span>
 </p>
-
+<!-- call functions that displays map -->
 <script type="text/javascript">
-	getEventMap()
-  var eventLoc = "<%=@city_name%>";
-  renderMap(eventLoc);
+  var city = '<%= @city.name %>';
+  renderMap(city,'event-map');
 </script>
-
- 
+<!-- Displays map -->
