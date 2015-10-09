@@ -56,7 +56,11 @@
 </div>
 <span class="text-center">
 	<% if (current_user.id != @creator.id) && (@event.users.count + @event.current_headcount) < @event.max_headcount && !@available.exists?(current_user.id)%>
-	<%= button_to "Join", attendings_path(@event) %>
+	<%= button_to "Join", attendings_path(@event), class:"btn btn-success" %>
+	<% end %>
+	<% if (current_user.id != @creator.id) && @available.exists?(current_user.id)%>
+
+	<%= button_to "Leave Event", remove_attending_path(@event), method: :patch, class:"btn btn-warning" %>
 	<% end %>
 </span>
 <p class="text-right">
@@ -66,10 +70,7 @@
 	<% end %>
  	<span class="links"><%= link_to 'Back', city_path(@event.city_id) %></span>
 </p>
-<% if (current_user.id != @creator.id) && @available.exists?(current_user.id)%>
 
-<%= button_to "Leave Event", remove_attending_path(@event), method: :patch %>
-<% end %>
 
  
 <!-- call functions that displays map -->
