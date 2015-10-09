@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
 	has_many :attendings
 	has_many :events, through: :attendings
-	belongs_to :cities
 	has_many :logs
+	belongs_to :city
 
 	has_secure_password
 
