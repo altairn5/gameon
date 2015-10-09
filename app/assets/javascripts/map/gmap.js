@@ -8,7 +8,6 @@ $( document ).ready(function() {
 	$(".player").YTPlayer();
 });
  // ex: https://maps.googleapis.com/maps/api/geocode/xml?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_KEY
-
 	function renderMap(loc, htmlTag){
 		
 		var address = loc.replace(" ","+");	
@@ -27,7 +26,6 @@ $( document ).ready(function() {
  			zoom:10
  		});
  	}
-
 
 	function makeMap(selector, config) {
 		map = new google.maps.Map(document.getElementById(selector), {
@@ -51,55 +49,50 @@ $( document ).ready(function() {
 		
 	}
 		//function builds marker when receive. No need to build an arrays of objects
-	 	function markerPush(latsNlongs){
-				var marker = new google.maps.Marker({
-					position: latsNlongs,
-					map: map
-				});
+	function markerPush(latsNlongs){
+			var marker = new google.maps.Marker({
+				position: latsNlongs,
+				map: map
+			});
  	}
 
+// function locHandler () { 
+	// below is only good for an array
 
-// function setMapOnAll(map) {
-// 	for (var i = 0; i < markers.length; i++) {
-// 		markers[i].setMap(map);
-// 	}
-// };
+//         var locArray = $('.act-loc').val().split(" ");
+//         var addr = locArray.join("+");
+//         $.get("https://maps.googleapis.com/maps/api/geocode/json?", { "address" : addr}, function (data) {
+//             LatLng = data.results[0].geometry.location;
+            
+//         getMap();
+//         })
+// }
 
 
-// 	function markerPush(arr) {
-// 		arr.forEach(function(el) {
-// 			link = el.name.replace(/\s/g, '-')
-// 			var marker = new google.maps.Marker({
-// 				position: el.LatLng,
-// 				map: map,
-// 				url: "http://localhost:3000/cities/" + link,
-// 				title: el.name
+// function markerPush(cityNames) {
+// 	var pinArr = cityNames;
+//    	console.log ("this is pin-loc", pinArr);
+// 	pinArr.forEach(function(el) {
+// 		link = el.name.replace(/\s/g, '-')
+// 		var marker = new google.maps.Marker({
+// 			position: el.LatLng,
+// 			map: map,
+// 			url: "http://localhost:3000/cities/" + link,
+// 			title: el.name
 // 		})
-// 			var info = createInfoWindow(el.description);
+// 		var info = createInfoWindow(el.description);
 // 		google.maps.event.addListener(marker, 'mouseover', function() {
 // 			info.open(map,marker);
 // 		});
 // 		google.maps.event.addListener(marker, 'mouseout', function() {
 // 			info.close(map,marker);
-// 		});
+// 		// });
 // 		google.maps.event.addListener(marker, 'click', function() {
 // 			window.location.href =  marker.url;
 // 		});
-// 			markers.push(marker)
-// 		});
-// 	};
+// 		markers.push(marker)
+// 		console.log (markers);
+// 	});
+// };
 
-// 	function setMapOnAll(map) {
-// 		for (var i = 0; i < markers.length; i++) {
-// 			markers[i].setMap(map);
-// 		}
-// 	};
-
-// 	function createInfoWindow(text){
-// 		var infowindow = new google.maps.InfoWindow({
-// 			content: text
-// 		});
-// 		return infowindow;
-// 	}
-// });
 
