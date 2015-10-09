@@ -22,7 +22,7 @@
               <%= f.text_field :address, :placeholder => "Location(Address)", :class => "form-control" %><br>
               <%= f.text_field :max_headcount, :placeholder => "Total number of players", :class => "form-control" %><br>
               <%= f.text_field :current_headcount, :placeholder => "Current number of players", :class => "form-control" %><br>
-               <%=f.select :sport_id, [["Tennis",1], ["Basketball", 2], ["Rockclimbing",3], ["Other",4]], :prompt => "Select Activity", :class => "form-control", :class => "form-control" %>
+               <%=f.collection_select(:sport_id, Sport.all, :id, :name, :prompt => "Select Activity", :class => "form-control", :class => "form-control" )%>
               <%= f.date_select :date, :order => [:month, :day, :year], :class => "form-control"%>
               <%= f.time_select :time, :ampm => true, :minute_step => 15, :class => "form-control" %><br><br>
               <%= f.text_area :description, :placeholder => "Description", :class => "form-control" %><br>
