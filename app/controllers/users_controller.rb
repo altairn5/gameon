@@ -24,13 +24,15 @@ def index
   def show
     @user = User.find(params[:id])
     @events = @user.events
-    @local = @user.city.events
-    # @title = @local.all
+     if @user.attributes['city_id']
+      @local = @user.city.events.where(sport_id: @events.last.sport_id)
+     end
+    # @similar = @local.where
     # @words = @
     @is_creator = Event.where(user_id: @user.id)
     @event = Event.all
     @current_user = current_user
-    @is_creator = @event.where(user_id: @user.id)
+ 
   end
 
   def edit
