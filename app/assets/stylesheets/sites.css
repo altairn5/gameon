@@ -47,6 +47,13 @@ text-align: center;
 	top: 0;
 }
 
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 2px;
+    border: 1px solid transparent;
+}
+
 .navbarsplash .navbarsplash-inner {
   position: relative;
   width: 1000px;

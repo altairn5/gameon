@@ -26,6 +26,11 @@
    border-width: 7px;
 }
 
+ #user-map {
+   height: 384px;
+   width: 100%;
+ }
+
 .fa-user {
 	width: 100%
 }

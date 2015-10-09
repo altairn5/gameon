@@ -18,7 +18,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @creator = User.find(@event.user_id)
     @available = @event.users.all
-    @city_name = City.find(@event.city_id).name
+    @city = City.find(@event.city_id)
     id = params[:id]
     #@event_log = Log.top_six_most_recent_logs
     render :show
