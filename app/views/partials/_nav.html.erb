@@ -1,11 +1,3 @@
-<script type="text/javascript">
-$("#notificationLink").click(function()
-$("#notificationContainer").fadeToggle(300);
-$("#notification_count").fadeOut("slow");
-return false;
-</script>
-
-
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg"></script>
 
 
@@ -22,14 +14,16 @@ return false;
         <li><%= link_to "Cities", cities_path, method: :get%></li>
  				<li><%=link_to "Activities", user_path(current_user), method: :get%></li>
 
-        <ul id="nav">
         <li id="notification_li">
-            <a href="#" id="notificationLink">Notifications</a>
+            <a href="#" id="notificationLink"><i class="fa fa-bell fa-1x"></i></a>
               <div id="notificationContainer">
-                  <div id="notificationTitle">Notifications</div>
-                  <div id="notificationsBody" class="notifications">
 
-                      <% @current_user.logs.last(3).reverse.each do |log| %>
+                  <div id="notificationTitle">Notifications</div>
+
+                  <div id="notificationsBody" class="notifications">  
+
+                      <% if @current_user.logs.count<4 %>
+                      <% @current_user.logs.last(@current_user.logs.count).reverse.each do |log| %>
                         <div class='notification-log'>
                           <span id='log-user-name'> You </span> 
                           <span id='log-details'><%=log.action %> 
@@ -39,9 +33,22 @@ return false;
 
                         </div>
                         <hr>
+                        <% end %>
+                      <% else %>
+                        <% @current_user.logs.last(4).reverse.each do |log| %>
+                          <div class='notification-log'>
+                            <span id='log-user-name'> You </span> 
+                            <span id='log-details'><%=log.action %> 
+                              <%=log.event.name %>
+                              (<%=log.event.sport.name %>)</span>
+                            <%= time_ago_in_words(log.created_at) %>
+                          </div>
+                          <hr>
+                        <% end %>
                       <% end %>
 
-                      <% @current_user.attending_event_logs.last(3).reverse.each do |log| %>
+                       <% if @current_user.attending_event_logs.count<4 %> 
+                      <% @current_user.attending_event_logs.last(@current_user.attending_event_logs.count).reverse.each do |log| %>
                         <div class='notification-log'>
                           <span id='log-user-name'> <%=log.user.first_name %>  
                             <%=log.user.last_name %></span> 
@@ -49,17 +56,30 @@ return false;
                             <%=log.event.name %>
                             (<%=log.event.sport.name %>)</span>
                           <%= time_ago_in_words(log.created_at) %>
-
                         </div>
                         <hr>
                       <% end %>
+                    <% else %>
+                      <% @current_user.attending_event_logs.last(4).reverse.each do |log| %>
+                        <div class='notification-log'>
+                          <span id='log-user-name'> <%=log.user.first_name %>  
+                            <%=log.user.last_name %></span> 
+                          <span id='log-details'><%=log.action %> 
+                            <%=log.event.name %>
+                            (<%=log.event.sport.name %>)</span>
+                          <%= time_ago_in_words(log.created_at) %>
+                        </div>
+                        <hr>
+                      </div>
+                    <% end %>
+                  <% end %>
 
-                  </div>
+
                   
                   <div id="notificationFooter"><a href="#">Close</a></div>
               </div>
         </li>
-      </ul>
+ 
 
 				<li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Peter <span class="caret"></span></a>
