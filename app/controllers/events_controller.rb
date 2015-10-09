@@ -20,6 +20,7 @@ class EventsController < ApplicationController
     @available = @event.users.all
     @city = City.find(@event.city_id)
     id = params[:id]
+    @address = @event[:address]
     render :show
   end
 

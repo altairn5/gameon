@@ -3,6 +3,17 @@ var markers = [];
 var LatLng = { lat: 37.09, lng: -95.71};
 var ltlg;
 var arrayOfCities = [];
+//var for autocomplete
+var placeSearch;
+var autocomplete;
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
 
 $( document ).ready(function() {
 	$(".player").YTPlayer();
@@ -10,12 +21,12 @@ $( document ).ready(function() {
  // ex: https://maps.googleapis.com/maps/api/geocode/xml?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_KEY
 	function renderMap(loc, htmlTag){
 		
-		var address = loc.replace(" ","+");	
+		var address = loc.replace(" ","+") || "SanFrancisco";	
 		$.get("https://maps.googleapis.com/maps/api/geocode/json?", { "address" : address}, function (data) {
 		ltlg = data.results[0].geometry.location;
 
      //function below needs to be called at the end of callback function
-		MakeCityEventMap(ltlg,htmlTag);
+		MakeCityEventMap(ltlg, htmlTag);
 
 		});
 	}
@@ -23,8 +34,10 @@ $( document ).ready(function() {
  	function MakeCityEventMap(point, idHTMLtag){
  		map = new google.maps.Map(document.getElementById(idHTMLtag), {
  			center: point,
- 			zoom:10
+ 			zoom:15
+
  		});
+ 		markerPush(point)
  	}
 
 	function makeMap(selector, config) {
@@ -94,5 +107,62 @@ $( document ).ready(function() {
 // 		console.log (markers);
 // 	});
 // };
+var defaultBounds; 
+defaultBounds = new google.maps.LatLngBounds(
+new google.maps.LatLng(71.3867745,-66.9502861),
+new google.maps.LatLng(18.9110642,172.4458955));
 
+var options = {
+	bounds: defaultBounds
+};
+
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search to geographical
+  // location types.
+  autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')), options);
+
+  // When the user selects an address from the dropdown, populate the address
+  // fields in the form.
+
+  // autocomplete.addListener('place_changed', fillInAddress);
+  // autocomplete.addListener('place_changed');
+}
+
+// function fillInAddress() {
+//   // Get the place details from the autocomplete object.
+//   var place = autocomplete.getPlace();
+
+//   for (var component in componentForm) {
+//     document.getElementById(component).value = '';
+//     document.getElementById(component).disabled = false;
+//   }
+
+//   // Get each component of the address from the place details
+//   // and fill the corresponding field on the form.
+//   for (var i = 0; i < place.address_components.length; i++) {
+//     var addressType = place.address_components[i].types[0];
+//     if (componentForm[addressType]) {
+//       var val = place.address_components[i][componentForm[addressType]];
+//       document.getElementById(addressType).value = val;
+//     }
+//   }
+// }
+
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      var circle = new google.maps.Circle({
+        center: geolocation,
+        radius: position.coords.accuracy
+      });
+      autocomplete.setBounds(circle.getBounds());
+    });
+  }
+}
 
