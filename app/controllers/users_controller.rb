@@ -23,8 +23,14 @@ def index
 
   def show
     @user = User.find(params[:id])
-    @events = @user.events
-     if @user.attributes['city_id']
+     if !@user.events.empty?
+       @events = @user.events
+     else 
+       @events = []
+      
+     end
+     
+     if (@user.attributes['city_id'] && !@user.events.blank?)
       @local = @user.city.events.where(sport_id: @events.last.sport_id)
      end
     # @similar = @local.where
