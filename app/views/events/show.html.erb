@@ -1,10 +1,9 @@
-
+<script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
 <div id="event-map"></div>
-
-<div>
 	<h1 class="overflow h3 space-1 text-center"><%=@event.sport.name%>: <%=@event.name %></h1>
 	<h5 class="space-2 text-muted text-center"><%= @event.address %> (<%= @event.city.name %>)</h5>
 </div><br>
+<div class="container">
 <div id="event-stats">
 	<div class="row row-condensed text-muted text-center icons" >
 		<div class="col-xs-2 col-sm-2 col-md-2" >
@@ -39,7 +38,9 @@
 			<span id="open-status">(OPEN)</span>
 		<%end%>
 	</h4>
+	<center>
 	<p><%=@event.description%></p>
+	</center>
 </div>
 <div id="Participants">
 	<h4 class="row-space-4"> 
