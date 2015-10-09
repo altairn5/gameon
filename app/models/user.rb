@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
 	has_many :attendings
 	has_many :events, through: :attendings
-	belongs_to :cities
+	has_many :logs
+	belongs_to :city
 
 	has_secure_password
 
@@ -14,6 +15,24 @@ class User < ActiveRecord::Base
   def self.confirm(params)
     user = User.find_by_email(params[:email])
     user.try(:authenticate, params[:password])
+  end
+
+  def created_events
+  	@created_events = Event.where(user_id: id)
+  end
+
+  def user_action_logs
+  	@user_action_logs = User.find(id).logs
+  end
+
+  def created_event_logs
+  	@created_event_ids ||= created_events.map(&:id)
+  	@created_event_logs ||= Log.where(event_id: @created_event_ids).order(created_at: "desc").limit(3)
+  end
+
+  def attending_event_logs
+  	@attending_event_ids ||= events.map(&:id)
+  	@attending_event_logs ||= Log.where(event_id: @attending_event_ids).where.not(user_id: id).order(created_at: "desc").limit(3)
   end
 
 end

@@ -1,5 +1,5 @@
-<div id="event-map"></div>
-
+<div id="user-map"></div>
+<div class="container">
 <div class="page-container text-center">
   <%if current_user == @user%>
     <div id="user-info">
@@ -31,11 +31,11 @@
                   (<%= event.users.count + event.current_headcount%>/<%= event.max_headcount%>)
                 <span>
               </h4> 
-              <span class="event-time"> <%= event.date.strftime("%b %d,")%> <%= event.time.strftime("%I:%M%p") %> </span> 
+              <span class="event-time"> <%= event.date.strftime("%b %d,")%> <%= event.time.strftime("%I:%M%p") %> </span>
                 ,<%= event.address%>
             </p>
           </div>
-          <% end %>	
+          <% end %> 
         <% end %>
     </div>
     <div>
@@ -56,11 +56,11 @@
                   (<%= event.users.count + event.current_headcount%>/<%= event.max_headcount%>)
                 <span>
               </h4> 
-              <span class="event-time"> <%= event.date.strftime("%b %d,")%> <%= event.time.strftime("%I:%M%p") %> </span> 
+              <span class="event-time"> <%= event.date.strftime("%b %d,")%> <%= event.time.strftime("%I:%M%p") %> </span>
                 ,<%= event.address%>
             </p>
            </div>
-         <% end %>	
+         <% end %>  
         <% end %>
     </div>
   <%else%>
@@ -91,7 +91,7 @@
                   (<%= event.users.count + event.current_headcount%>/<%= event.max_headcount%>)
                 <span>
               </h4> 
-              <span class="event-time"> <%= event.date.strftime("%b %d,")%> <%= event.time.strftime("%I:%M%p") %> </span> 
+              <span class="event-time"> <%= event.date.strftime("%b %d,")%> <%= event.time.strftime("%I:%M%p") %> </span>
                 ,<%= event.address%>
             </p>
           </div>
@@ -119,9 +119,45 @@
      </div>
     <% end %>
   </div>
+
+<% if @user.attributes['city_id'] %>
+    <% if (@local == @events) %>
+    <div class ="activity-list-container text-left">
+    <h3> Recommended Activities: </h3>
+    
+    <% @local.each do |local| %>
+      <% if !local.users.all.exists?(current_user.id) && local.user_id != @user.id %>
+      
+          
+        <div class='list-group'>
+         <p>
+         <h4> <%= link_to local.name, event_path(local)%>
+         <span class='event-details'>
+          (<%=local.sport.name%>), 
+            <%if (local.users.count + local.current_headcount) == local.max_headcount%>
+              FULL 
+            <%else %>
+              OPEN 
+            <%end%> 
+            (<%= local.users.count + local.current_headcount%>/<%= local.max_headcount%>)
+           <span>
+         </h4> 
+           <span class="event-time"> <%= local.date.strftime("%b %d,")%> <%= local.time.strftime("%I:%M%p") %>, </span> 
+           <%= local.address%>  
+           <% if (current_user.id != local.user_id) && (local.users.count + local.current_headcount) < local.max_headcount && !local.users.all.exists?(current_user.id)%>
+             <%= button_to "Join", attendings_path(local), class:"btn btn-success" %>
+           <% end %>  
+          </p>
+        </div>
+    <% end %>
+    <% end %>
+    <%end%>
+  <% end %>
+
 </div>
+
 <script type="text/javascript">
-  getEventMap()
-  var eventLoc = "<%=@city_name%>";
-  renderMap(eventLoc);
-</script>
+  var city = 'San Francisco';
+  renderMap(city,'user-map');
+ </script>
+
