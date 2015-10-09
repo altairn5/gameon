@@ -121,7 +121,7 @@
   </div>
 
 <% if @user.attributes['city_id'] %>
-    <% if @local.exists?(@events) %>
+    <% if (@local == @events) %>
     <div class ="activity-list-container text-left">
     <h3> Recommended Activities: </h3>
     
