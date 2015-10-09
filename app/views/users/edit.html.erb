@@ -23,7 +23,7 @@
             <%= f.text_field :email, placeholder: "Email", :class => "form-control" %><br>
             <%= f.text_field :age, placeholder: "Age" %>
             <%=f.select :gender, ["Male", "Female", "Not Into Labels"], :prompt => "Change Gender", :class => "form-control"%>
-            <%=f.select :city_id, [["San Francisco",1], ["New York", 2], ["London",3]], :prompt => "Change City", :class => "form-control"%><br>
+            <%= f.collection_select(:city_id, City.all, :id, :name, :prompt => "Change City", :class => "form-control")%><br>
             <%= f.file_field :avatar%><br>
           <div class="form-group">
             <%= f.submit "Update Profile", :class => "btn-primary btn-block" %>
