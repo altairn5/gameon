@@ -16,6 +16,7 @@ $( document ).ready(function() {
   		 
   		 getCityMap();
   		 getEventMap();
+  		 getUserMap();
  	 	 
         });
 
@@ -30,6 +31,13 @@ $( document ).ready(function() {
 
 function getCityMap(){
 	map = new google.maps.Map(document.getElementById('city-map'), {
+		center: ltlg,
+		zoom: 11
+	});
+}
+
+function getUserMap(){
+	map = new google.maps.Map(document.getElementById('user-map'), {
 		center: ltlg,
 		zoom: 11
 	});
