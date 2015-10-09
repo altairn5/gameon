@@ -3,6 +3,8 @@
 	<h1 class="overflow h3 space-1 text-center"><%=@event.sport.name%>: <%=@event.name %></h1>
 	<h5 class="space-2 text-muted text-center"><%= @event.address %> (<%= @event.city.name %>)</h5>
 </div><br>
+
+<div class="page-container">
 <div class="container">
 <div id="event-stats">
 	<div class="row row-condensed text-muted text-center icons" >
@@ -68,6 +70,7 @@
 	<% end %>
  	<span class="links"><%= link_to 'Back', city_path(@event.city_id) %></span>
 </p>
+</div>
 <!-- call functions that displays map -->
 <script type="text/javascript">
   var city = '<%= @city.name %>';
