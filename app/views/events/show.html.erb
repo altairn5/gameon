@@ -1,14 +1,5 @@
-<!-- call functions that displays map -->
-<script type="text/javascript">
-  var eventLoc = "<%=@city_name%>";
-  renderMap(eventLoc);
-</script>
-<!-- Displays map -->
-<div class="container">
-<div id="event-container">
-  <div id="event-map"></div>
-</div>
-</div>
+<div id="event-map"></div>
+
 
 <div>
 	<h1 class="overflow h3 space-1 text-center"><%=@event.sport.name%>: <%=@event.name %></h1>
@@ -77,5 +68,10 @@
  	<span class="links"><%= link_to 'Back', city_path(@event.city_id) %></span>
 </p>
 
+<script type="text/javascript">
+	getEventMap()
+  var eventLoc = "<%=@city_name%>";
+  renderMap(eventLoc);
+</script>
 
  
