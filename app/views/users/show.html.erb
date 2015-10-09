@@ -1,3 +1,5 @@
+<div id="user-map"></div>
+<div class="container">
 <div class="page-container text-center">
   <%if current_user == @user%>
     <div id="user-info">
@@ -17,7 +19,7 @@
       <h3> Activities I'm Hosting: </h3>
         <% @is_creator.each do |event| %>
           <div class='list-group'>
-            <p>  
+            <p> 
               <h4><%= link_to event.name, event_path(event)%>
                 <span class='event-details'>
                   (<%=event.sport.name%>), 
@@ -29,11 +31,11 @@
                   (<%= event.users.count + event.current_headcount%>/<%= event.max_headcount%>)
                 <span>
               </h4> 
-              <span class="event-time"> <%= event.date.strftime("%b %d,")%> <%= event.time.strftime("%I:%M%p") %>, </span> 
-                <%= event.address%>
+              <span class="event-time"> <%= event.date.strftime("%b %d,")%> <%= event.time.strftime("%I:%M%p") %> </span>
+                ,<%= event.address%>
             </p>
           </div>
-          <% end %>	
+          <% end %> 
         <% end %>
     </div>
     <div>
@@ -54,11 +56,11 @@
                   (<%= event.users.count + event.current_headcount%>/<%= event.max_headcount%>)
                 <span>
               </h4> 
-              <span class="event-time"> <%= event.date.strftime("%b %d,")%> <%= event.time.strftime("%I:%M%p") %>, </span> 
-                <%= event.address%>
+              <span class="event-time"> <%= event.date.strftime("%b %d,")%> <%= event.time.strftime("%I:%M%p") %> </span>
+                ,<%= event.address%>
             </p>
            </div>
-         <% end %>	
+         <% end %>  
         <% end %>
     </div>
   <%else%>
@@ -74,7 +76,6 @@
           </div>
         </div>
     </div><br><br> 
-
       <% @events.each do |event| %>
         <div class ="activity-list-container text-left"> 
           <div class='list-group'>
@@ -90,8 +91,8 @@
                   (<%= event.users.count + event.current_headcount%>/<%= event.max_headcount%>)
                 <span>
               </h4> 
-              <span class="event-time"> <%= event.date.strftime("%b %d,")%>, <%= event.time.strftime("%I:%M%p") %> </span> 
-                <%= event.address%>
+              <span class="event-time"> <%= event.date.strftime("%b %d,")%> <%= event.time.strftime("%I:%M%p") %> </span>
+                ,<%= event.address%>
             </p>
           </div>
       <% end %> 
@@ -110,39 +111,38 @@
                 (<%= event.users.count + event.current_headcount%>/<%= event.max_headcount%>)
               <span>
             </h4> 
-            <span class="event-time"> <%= event.date.strftime("%b %d,")%>, <%= event.time.strftime("%I:%M%p") %> </span> 
-              <%= event.address%> 
+            <span class="event-time"> <%= event.date.strftime("%b %d,")%> <%= event.time.strftime("%I:%M%p") %> </span> 
+              ,<%= event.address%> 
           </p>
         </div>
       <% end %> 
      </div>
     <% end %>
   </div>
-  <div>
-  <% if @user.attributes['city_id'] %>
+</div>
+<% if @user.attributes['city_id'] %>
     <% if @local.exists?(@events) %>
     <h3> Recommended Activities: </h3>
     
     <% @local.each do |local| %>
-    <% if !local.users.all.exists?(current_user.id) %>
+      <% if !local.users.all.exists?(current_user.id) && local.user_id != @user.id %>
       
-      <div class ="activity-list-container text-left">  
+        <div class ="activity-list-container text-left">  
         <div class='list-group'>
-        <p>
-            <h4> <%= link_to local.name, event_path(local)%>
-              <span class='event-details'>
-                (<%=local.sport.name%>), 
-                <%if (local.users.count + local.current_headcount) == local.max_headcount%>
-                  FULL 
-                <%else %>
-                  OPEN 
-                <%end%> 
-                (<%= local.users.count + local.current_headcount%>/<%= local.max_headcount%>)
-              <span>
-            </h4> 
-            <span class="event-time"> <%= local.date.strftime("%b %d,")%> <%= local.time.strftime("%I:%M%p") %>, </span> 
-              <%= local.address%> 
-            
+         <p>
+         <h4> <%= link_to local.name, event_path(local)%>
+         <span class='event-details'>
+          (<%=local.sport.name%>), 
+            <%if (local.users.count + local.current_headcount) == local.max_headcount%>
+              FULL 
+            <%else %>
+              OPEN 
+            <%end%> 
+            (<%= local.users.count + local.current_headcount%>/<%= local.max_headcount%>)
+           <span>
+         </h4> 
+           <span class="event-time"> <%= local.date.strftime("%b %d,")%> <%= local.time.strftime("%I:%M%p") %>, </span> 
+           <%= local.address%>         
           </p>
         </div>
     <% end %>
@@ -150,6 +150,8 @@
     <%end%>
   <% end %>
 
-
-</div>
+<script type="text/javascript">
+  var city = 'San Francisco';
+  renderMap(city,'user-map');
+ </script>
 

@@ -1,7 +1,3 @@
-<script type="text/javascript">
-  var city = "<%=@city_name%>";
-  renderMap(city);
- </script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 <div id="city-map"></div>
@@ -35,4 +31,8 @@
     </div><br>
         <% end %>
 </div>
+<script type="text/javascript">
+  var city = '<%= @city.name %>';
+	renderMap(city,'city-map');
+ </script>
 

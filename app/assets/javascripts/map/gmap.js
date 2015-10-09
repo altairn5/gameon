@@ -1,6 +1,6 @@
 var map;
 var markers = [];
-var LatLng = { lat: 37.78, lng: -122.44};
+var LatLng = { lat: 37.09, lng: -95.71};
 var ltlg;
 var arrayOfCities = [];
 
@@ -8,51 +8,53 @@ $( document ).ready(function() {
 	$(".player").YTPlayer();
 });
  // ex: https://maps.googleapis.com/maps/api/geocode/xml?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_KEY
- function renderMap(loc){
- 		 // var loc = $('.act-loc').text();
-    var address = loc.replace(" ","+");	
- 	$.get("https://maps.googleapis.com/maps/api/geocode/json?", { "address" : address}, function (data) {
-            ltlg = data.results[0].geometry.location;
-  		 
-  		 getCityMap();
-  		 getEventMap();
- 	 	 
-        });
+	function renderMap(loc, htmlTag){
+		
+		var address = loc.replace(" ","+") || "SanFrancisco";	
+		$.get("https://maps.googleapis.com/maps/api/geocode/json?", { "address" : address}, function (data) {
+		ltlg = data.results[0].geometry.location;
 
- }
+     //function below needs to be called at the end of callback function
+		MakeCityEventMap(ltlg,htmlTag);
 
- function getEventMap(){
- 		map = new google.maps.Map(document.getElementById('event-map'), {
- 			center: ltlg,
- 			zoom: 10
+		});
+	}
+	
+ 	function MakeCityEventMap(point, idHTMLtag){
+ 		map = new google.maps.Map(document.getElementById(idHTMLtag), {
+ 			center: point,
+ 			zoom:10
  		});
- }
+ 	}
 
-function getCityMap(){
-	map = new google.maps.Map(document.getElementById('city-map'), {
-		center: ltlg,
-		zoom: 11
-	});
-}
-//         var locArray = $('.act-loc').val().split(" ");
-//         var addr = locArray.join("+");
-//         $.get("https://maps.googleapis.com/maps/api/geocode/json?", { "address" : addr}, function (data) {
-//             LatLng = data.results[0].geometry.location;
-            
-//         getMap();
-//         })
- 
+	function makeMap(selector, config) {
+		map = new google.maps.Map(document.getElementById(selector), {
+			center: config.center,
+			zoom: config.zoom || 10
+		});
+	}
 
-
-
-function getMapCitiesIndex () {
-
-	map = new google.maps.Map(document.getElementById('map-canvas'), {
-		center: LatLng,
-		zoom: 3
-	});
-
-}
+	//functions finds the latitude and longitude of the cities passed in the array CityNames
+	function citiesLntLng(cityNames){
+		cityNames.forEach(function(city){
+	 		var oneCity = city.replace(" ","+");
+	 		//Ajax request to find the lat & long of the array of cities that I am passing
+		 	$.get("https://maps.googleapis.com/maps/api/geocode/json?" , { "address" : oneCity}, function (response){
+		 		LatLng = response.results[0].geometry.location;
+		 		console.log("this is lat and long" , LatLng);
+		 		//Ajax response cannot be predicted. Passing answer as received as arg to the markerPush function
+		 		markerPush(LatLng)
+		 	});	
+		});
+		
+	}
+		//function builds marker when receive. No need to build an arrays of objects
+	function markerPush(latsNlongs){
+			var marker = new google.maps.Marker({
+				position: latsNlongs,
+				map: map
+			});
+ 	}
 
 // function locHandler () { 
 	// below is only good for an array
@@ -66,22 +68,6 @@ function getMapCitiesIndex () {
 //         })
 // }
 
- function citiesLntLng(cityNames){
-
- 	// for(var i = 0;i<=cityNames.length;i++){
- 	// var cAr = cityNames[i].replace(" ","+");
- 	// console.log(cArr);
- 	cityNames.forEach(function(city){
- 		var oneCity = city.replace(" ","+");	
- 	$.get("https://maps.googleapis.com/maps/api/geocode/json?" , { "address" : oneCity}, function (response){
- 		LatLng = response.results[0].geometry.location;
- 		console.log("this is lat and long" , LatLng);
- 		arrayOfCities.push(LatLng);
- 	});	
- 	console.log("this are the lats & longs", arrayOfCities);
- 	});
- 	
- }
 
 // function markerPush(cityNames) {
 // 	var pinArr = cityNames;
@@ -109,57 +95,4 @@ function getMapCitiesIndex () {
 // 	});
 // };
 
-
-
-// function setMapOnAll(map) {
-// 	for (var i = 0; i < markers.length; i++) {
-// 		markers[i].setMap(map);
-// 	}
-// };
-
-// // function createInfoWindow(text){
-// // 	var infowindow = new google.maps.InfoWindow({
-// // 		content: text
-// // 	});
-// // 	return infowindow;
-// // }
-
-// };
-
-// 	function markerPush(arr) {
-// 		arr.forEach(function(el) {
-// 			link = el.name.replace(/\s/g, '-')
-// 			var marker = new google.maps.Marker({
-// 				position: el.LatLng,
-// 				map: map,
-// 				url: "http://localhost:3000/cities/" + link,
-// 				title: el.name
-// 		})
-// 			var info = createInfoWindow(el.description);
-// 		google.maps.event.addListener(marker, 'mouseover', function() {
-// 			info.open(map,marker);
-// 		});
-// 		google.maps.event.addListener(marker, 'mouseout', function() {
-// 			info.close(map,marker);
-// 		});
-// 		google.maps.event.addListener(marker, 'click', function() {
-// 			window.location.href =  marker.url;
-// 		});
-// 			markers.push(marker)
-// 		});
-// 	};
-
-// 	function setMapOnAll(map) {
-// 		for (var i = 0; i < markers.length; i++) {
-// 			markers[i].setMap(map);
-// 		}
-// 	};
-
-// 	function createInfoWindow(text){
-// 		var infowindow = new google.maps.InfoWindow({
-// 			content: text
-// 		});
-// 		return infowindow;
-// 	}
-// });
 
