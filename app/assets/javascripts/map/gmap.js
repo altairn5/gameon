@@ -26,7 +26,7 @@ $( document ).ready(function() {
  	function MakeCityEventMap(point, idHTMLtag){
  		map = new google.maps.Map(document.getElementById(idHTMLtag), {
  			center: point,
- 			zoom:14
+ 			zoom:12
 
  		});
  		markerPush(point)
