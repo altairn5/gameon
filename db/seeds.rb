@@ -22,7 +22,6 @@ City.create( name: "San Diego")
 City.create( name: "San Francisco")
 City.create( name: "San Jose")
 City.create( name: "Seattle")
-City.create( name: "Washington")
 
 
 Sport.create( name: "Tennis")
