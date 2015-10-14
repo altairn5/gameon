@@ -10,6 +10,7 @@ class EventsController < ApplicationController
     user = current_user
     @city_id = params[:city_id]
     @event = Event.new
+    @sports = Sport.all
     render :new
   end
 
@@ -40,10 +41,10 @@ class EventsController < ApplicationController
     end 
   end
 
-
   def edit
     id = params[:id]
     @event = Event.find(params[:id])
+    @sports = Sport.all
   end
 
   def update
@@ -59,7 +60,7 @@ class EventsController < ApplicationController
      #logging current_user updated an event
     Log.create(event_id:@event.id, user_id:@user.id, action:"updated")
       #redirect to show
-      redirect_to "/events/#{event_id}"
+      redirect_to event_path(@event.id)
     else
       render :edit
     end  
@@ -73,7 +74,7 @@ class EventsController < ApplicationController
     #logging current_user updated an event
     #Log.create(event_id:@event.id, user_id:@user.id, action:"deleted")
     #implement this when we have done everything else
-    redirect_to "/cities"
-  end
+    redirect_to cities_path
+  end 
   
 end

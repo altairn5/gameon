@@ -15,7 +15,7 @@ def index
     @user = User.new(user_params)
     if @user.save
        login(@user)
-       redirect_to "/users/#{@user.id}"
+       redirect_to user_path(@user.id)
     else
       render :new
     end
@@ -23,7 +23,7 @@ def index
 
   def show
     @user = User.find(params[:id])
-     if !@user.events.empty?
+     if @user.events.any? 
        @events = @user.events
      else 
        @events = []
