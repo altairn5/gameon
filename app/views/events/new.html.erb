@@ -1,8 +1,6 @@
-  <div class="modal-dialog flip-wrapper">
-    <div class="modal-content flip active" id="loginFlip">
-      <div class="modal-body">
-        <header class="header">
-          <p class="title">Create Event</p>
+  <%= render "partials/begmodal" %>
+
+          <p class="title">Create Activity</p>
         </header>
         <div class="alert alert-danger hide" id="errorWrapperLogin"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>
         <div class="form-controls">
@@ -22,7 +20,7 @@
               <%= f.text_field :address, :placeholder => "Location(Address)", :class => "form-control", :id => "autocomplete" %><br>
               <%= f.text_field :max_headcount, :placeholder => "Total number of players", :class => "form-control" %><br>
               <%= f.text_field :current_headcount, :placeholder => "Current number of players", :class => "form-control" %><br>
-               <%=f.collection_select(:sport_id, Sport.all, :id, :name, :prompt => "Select Activity", :class => "form-control", :class => "form-control") %>
+               <%=f.collection_select(:sport_id, @sports, :id, :name, :prompt => "Select Activity", :class => "form-control", :class => "form-control") %>
               <%= f.date_select :date, :order => [:month, :day, :year], :class => "form-control"%>
               <%= f.time_select :time, :ampm => true, :minute_step => 15, :class => "form-control" %><br><br>
               <%= f.text_area :description, :placeholder => "Description", :class => "form-control" %><br>
