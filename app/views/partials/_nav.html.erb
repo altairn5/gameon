@@ -11,8 +11,8 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
           <% if @current_user %>
+        <li><%=link_to "My Activities", user_path(current_user), method: :get%></li>
         <li><%= link_to "Cities", cities_path, method: :get%></li>
- 				<li><%=link_to "Activities", user_path(current_user), method: :get%></li>
 
         <li id="notification_li">
             <a href="#" id="notificationLink"><i class="fa fa-bell fa-1x"></i></a>

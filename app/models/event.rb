@@ -20,6 +20,11 @@ class Event < ActiveRecord::Base
 			!date.blank? and date < Date.today
 	end
 
+  # def event_creator
+  #   @event_creator = User.where(id: user_id)
+  # end
+
+
 end
 
   

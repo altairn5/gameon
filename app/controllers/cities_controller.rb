@@ -10,7 +10,6 @@ class CitiesController < ApplicationController
   	@city = City.find(id)
     @events= @city.events
     @e_markers = cities_array
-
   end
 
   def cities_array
