@@ -10,7 +10,7 @@
     </div>
   <%if @is_creator && !@is_creator.empty?%>
     <div class ="activity-list-container text-left">  
-      <h2> Activities I'm Hosting </h2>
+      <h3> Activities I'm Hosting </h3>
         <% @is_creator.each do |event| %>
           <div class='list-group'>
             <h4><%= link_to event.name, event_path(event)%> <small>(<%=event.sport.name%>)</small></h4>
