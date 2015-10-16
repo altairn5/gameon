@@ -25,45 +25,45 @@ cities = City.create([
 {name: "Seattle"},
 ])
 
-# sports = Sport.create([
-#   {name: "Tennis",
-#   image_url: ""},
-#   {name: "Basketball",
-#   image_url: ""},
-#   {name: "Rockclimbing",
-#   image_url: ""},
-#   {name: "Golf",
-#   image_url: ""},
-#   {name: "Football",
-#   image_url: ""},
-#   {name: "Rugby",
-#   image_url: ""},
-#   {name: "Baseball",
-#   image_url: ""},
-#   {name: "Table Tennis",
-#   image_url: ""},
-#   {name: "Volleyball",
-#   image_url: ""},
-#   {name: "Cricket",
-#   image_url: ""},
-#   {name: "Hockey",
-#   image_url: ""},
-#   {name: "Soccer",
-#   image_url: ""},
-# ])
+sports = Sport.create([
+  {name: "Tennis",
+  image_url: "http://www.stemschooldr.com/wp-content/uploads/2015/09/Sports.jpg"},
+  {name: "Basketball",
+  image_url: "http://www.stemschooldr.com/wp-content/uploads/2015/09/Sports.jpg"},
+  {name: "Rockclimbing",
+  image_url: "http://www.stemschooldr.com/wp-content/uploads/2015/09/Sports.jpg"},
+  {name: "Golf",
+  image_url: "http://www.stemschooldr.com/wp-content/uploads/2015/09/Sports.jpg"},
+  {name: "Football",
+  image_url: "http://www.stemschooldr.com/wp-content/uploads/2015/09/Sports.jpg"},
+  {name: "Rugby",
+  image_url: "http://www.stemschooldr.com/wp-content/uploads/2015/09/Sports.jpg"},
+  {name: "Baseball",
+  image_url: "http://www.stemschooldr.com/wp-content/uploads/2015/09/Sports.jpg"},
+  {name: "Table Tennis",
+  image_url: "http://www.stemschooldr.com/wp-content/uploads/2015/09/Sports.jpg"},
+  {name: "Volleyball",
+  image_url: "http://www.stemschooldr.com/wp-content/uploads/2015/09/Sports.jpg"},
+  {name: "Cricket",
+  image_url: "http://www.stemschooldr.com/wp-content/uploads/2015/09/Sports.jpg"},
+  {name: "Hockey",
+  image_url: "http://www.stemschooldr.com/wp-content/uploads/2015/09/Sports.jpg"},
+  {name: "Soccer",
+  image_url: "http://www.stemschooldr.com/wp-content/uploads/2015/09/Sports.jpg"},
+])
 
-Sport.create( name: "Tennis")
-Sport.create( name: "Basketball")
-Sport.create( name: "Rockclimbing")
-Sport.create( name: "Golf")
-Sport.create( name: "Football")
-Sport.create( name: "Rugby")
-Sport.create( name: "Baseball")
-Sport.create( name: "Table Tennis")
-Sport.create( name: "Volleyball")
-Sport.create( name: "Cricket")
-Sport.create( name: "Hockey")
-Sport.create( name: "Soccer")
+# Sport.create( name: "Tennis")
+# Sport.create( name: "Basketball")
+# Sport.create( name: "Rockclimbing")
+# Sport.create( name: "Golf")
+# Sport.create( name: "Football")
+# Sport.create( name: "Rugby")
+# Sport.create( name: "Baseball")
+# Sport.create( name: "Table Tennis")
+# Sport.create( name: "Volleyball")
+# Sport.create( name: "Cricket")
+# Sport.create( name: "Hockey")
+# Sport.create( name: "Soccer")
 
 20.times do
   user = User.create(
