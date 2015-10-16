@@ -12,7 +12,8 @@
         <div class="cardheader" style="background: url('http://www.stemschooldr.com/wp-content/uploads/2015/09/Sports.jpg');background-size: cover;height: 135px;">
         </div>
         <div class="avatar">
-          <%=image_tag('thumb/missing.png')%>
+
+          <%= image_tag event.event_creator.avatar.url(:thumb) %>
         </div>
         <div class="info">
           <div class="title"><%= link_to event.name, event_path(event), 'data-no-turbolink' => true%></div>
