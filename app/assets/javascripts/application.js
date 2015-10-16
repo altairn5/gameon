@@ -14,8 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require notifications/loglist
-//= require instagram
 //= require jquery.mb.YTPlayer
 //= require map/gmap
 //= require instafeed
