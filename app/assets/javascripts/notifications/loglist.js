@@ -1,6 +1,7 @@
+console.log("loglist file running!")
 
-$(document).ready(function() {
-  
+
+function initPage() {
 	$("#notificationLink").click(function()
 		{
 			$("#notificationContainer").fadeToggle(300);
@@ -21,5 +22,4 @@ $(document).ready(function() {
 		return false
 		}
 	);
-
-});
+}
