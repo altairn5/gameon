@@ -15,7 +15,9 @@
 //= require turbolinks
 //= require bootstrap
 //= require jquery.mb.YTPlayer
-//= require map/gmap
+//= require google
 //= require instafeed
 //= require chat
+//= require map/gmap
+//= require notifications/loglist
 //= require_tree .
