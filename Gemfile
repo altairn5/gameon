@@ -31,6 +31,10 @@ gem 'ffaker'
 
 gem 'stream-ruby'
 
+gem 'underscore-rails'
+
+gem 'gmaps4rails'
+
 gem "paperclip", "~> 4.3"
 # Use Unicorn as the app server
 # gem 'unicorn'

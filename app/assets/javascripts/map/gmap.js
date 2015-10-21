@@ -11,55 +11,55 @@ $( document ).ready(function() {
 	$(".player").YTPlayer();
 });
  // ex: https://maps.googleapis.com/maps/api/geocode/xml?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_KEY
-	function renderMap(loc, htmlTag){
-		
-		var address = loc.replace(" ","+") || "SanFrancisco";	
-		$.get("https://maps.googleapis.com/maps/api/geocode/json?", { "address" : address}, function (data) {
-		ltlg = data.results[0].geometry.location;
-
-     //function below needs to be called at the end of callback function
-		MakeCityEventMap(ltlg, htmlTag);
-
-		});
-	}
+function renderMap(loc, htmlTag){
 	
- 	function MakeCityEventMap(point, idHTMLtag){
- 		map = new google.maps.Map(document.getElementById(idHTMLtag), {
- 			center: point,
- 			zoom:12
+	var address = loc.replace(" ","+") || "SanFrancisco";	
+	$.get("https://maps.googleapis.com/maps/api/geocode/json?", { "address" : address}, function (data) {
+	ltlg = data.results[0].geometry.location;
 
- 		});
- 		markerPush(point)
- 	}
+   //function below needs to be called at the end of callback function
+	MakeCityEventMap(ltlg, htmlTag);
 
-	function makeMap(selector, config) {
-		map = new google.maps.Map(document.getElementById(selector), {
-			center: config.center,
-			zoom: config.zoom || 10
+	});
+}
+
+function MakeCityEventMap(point, idHTMLtag){
+	map = new google.maps.Map(document.getElementById(idHTMLtag), {
+		center: point,
+		zoom:12
+
+	});
+	markerPush(point)
+}
+
+function makeMap(selector, config) {
+	map = new google.maps.Map(document.getElementById(selector), {
+		center: config.center,
+		zoom: config.zoom || 10
+	});
+}
+
+//functions finds the latitude and longitude of the cities passed in the array CityNames
+function citiesLntLng(cityNames){
+	cityNames.forEach(function(city){
+ 		var oneCity = city.replace(" ","+");
+ 		//Ajax request to find the lat & long of the array of cities that I am passing
+	 	$.get("https://maps.googleapis.com/maps/api/geocode/json?" , { "address" : oneCity}, function (response){
+	 		LatLng = response.results[0].geometry.location;
+	 		console.log("this is lat and long" , LatLng);
+	 		//Ajax response cannot be predicted. Passing answer as received as arg to the markerPush function
+	 		markerPush(LatLng)
+	 	});	
+	});
+	
+}
+	//function builds marker when receive. No need to build an arrays of objects
+function markerPush(latsNlongs){
+		var marker = new google.maps.Marker({
+			position: latsNlongs,
+			map: map
 		});
-	}
-
-	//functions finds the latitude and longitude of the cities passed in the array CityNames
-	function citiesLntLng(cityNames){
-		cityNames.forEach(function(city){
-	 		var oneCity = city.replace(" ","+");
-	 		//Ajax request to find the lat & long of the array of cities that I am passing
-		 	$.get("https://maps.googleapis.com/maps/api/geocode/json?" , { "address" : oneCity}, function (response){
-		 		LatLng = response.results[0].geometry.location;
-		 		console.log("this is lat and long" , LatLng);
-		 		//Ajax response cannot be predicted. Passing answer as received as arg to the markerPush function
-		 		markerPush(LatLng)
-		 	});	
-		});
-		
-	}
-		//function builds marker when receive. No need to build an arrays of objects
-	function markerPush(latsNlongs){
-			var marker = new google.maps.Marker({
-				position: latsNlongs,
-				map: map
-			});
- 	}
+}
 
 // function locHandler () { 
 	// below is only good for an array
@@ -101,8 +101,9 @@ $( document ).ready(function() {
 // };
 var defaultBounds; 
 defaultBounds = new google.maps.LatLngBounds(
-new google.maps.LatLng(71.3867745,-66.9502861),
-new google.maps.LatLng(18.9110642,172.4458955));
+	new google.maps.LatLng(71.3867745,-66.9502861),
+	new google.maps.LatLng(18.9110642,172.4458955)
+);
 
 var options = {
 	bounds: defaultBounds
