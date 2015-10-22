@@ -65,40 +65,40 @@ sports = Sport.create([
 # Sport.create( name: "Hockey")
 # Sport.create( name: "Soccer")
 
-# 20.times do
-#   user = User.create(
-#     first_name: FFaker::Name::first_name,
-#     last_name: FFaker::Name::last_name,
-#     email: FFaker::Internet::email,
-#     password: "password",
-#     age: rand(18..50),
-#     gender: FFaker::Gender::random,
-#   )
-#    random_city = rand(City.count)
-#    City.offset(random_city).first.users << user
-# end
+1.times do
+  user = User.create(
+    first_name: FFaker::Name::first_name,
+    last_name: FFaker::Name::last_name,
+    email: FFaker::Internet::email,
+    password: "password",
+    age: rand(18..50),
+    gender: FFaker::Gender::random,
+  )
+   random_city = rand(City.count)
+   City.offset(random_city).first.users << user
+end
 
 
-# 200.times do
-#   event = Event.create(
-#     address: FFaker::AddressUS::street_address + ", " + FFaker::AddressUS::city,
-#     date: "2016/10/26",
-#     time: "5:00PM",
-#     name: FFaker::Sport::name,
-#     max_headcount: rand(5..10),
-#     current_headcount: 1,
-#     description: FFaker::HipsterIpsum.paragraph,
-#     user_id: rand(1..20),
-#     sport_id: rand(1..4),
-#   )
+1.times do
+  event = Event.create(
+    address: FFaker::AddressUS::street_address + ", " + FFaker::AddressUS::city,
+    date: "2016/10/26",
+    time: "5:00PM",
+    name: FFaker::Sport::name,
+    max_headcount: rand(5..10),
+    current_headcount: 1,
+    description: FFaker::HipsterIpsum.paragraph,
+    user_id: rand(1..20),
+    sport_id: rand(1..4),
+  )
 
-#   random_city = rand(City.count)
-#    City.offset(random_city).first.events << event
-#   random_user = rand(User.count)
-#     User.offset(random_user).first.events << event
-#   random_sport = rand(Sport.count)
-#     Sport.offset(random_sport).first.events << event
-# end
+  random_city = rand(City.count)
+   City.offset(random_city).first.events << event
+  random_user = rand(User.count)
+    User.offset(random_user).first.events << event
+  random_sport = rand(Sport.count)
+    Sport.offset(random_sport).first.events << event
+end
 
 
 
