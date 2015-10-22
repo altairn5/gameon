@@ -1,4 +1,9 @@
 <div id="user-map"></div>
+<center>
+<% if flash[:notice] %>
+      <div class="alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+</center>
 <div class="container">
 <div class="page-container text-center">
   <%if current_user == @user%>
