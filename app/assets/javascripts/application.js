@@ -14,8 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require underscore
+//= require gmaps/google
 //= require jquery.mb.YTPlayer
-//= require map/gmap
 //= require instafeed
 //= require chat
-//= require_tree .
+//= require notifications/loglist
+//= require instagram
+//= require map/gmap

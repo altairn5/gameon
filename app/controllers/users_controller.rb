@@ -15,6 +15,7 @@ def index
     @user = User.new(user_params)
     if @user.save
        login(@user)
+        flash[:notice] = "Please update your profile!"
        redirect_to user_path(@user.id)
     else
       render :new
@@ -27,7 +28,6 @@ def index
        @events = @user.events
      else 
        @events = []
-      
      end
      
      if (@user.attributes['city_id'] && !@user.events.blank?)

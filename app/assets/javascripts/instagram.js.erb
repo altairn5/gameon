@@ -1,5 +1,7 @@
+var instagramApiKey = "<%= ENV['API_KEY'] %>";
+
 var feed = new Instafeed({
-  clientId: '98ad19a7321546ccbd591f15bab18c01',
+  clientId: instagramApiKey,
   limit: 33,
   get: 'tagged',
   tagName: 'gameon',
