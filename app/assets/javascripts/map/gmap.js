@@ -26,7 +26,10 @@ function renderMap(loc, htmlTag){
 function MakeCityEventMap(point, idHTMLtag){
 	map = new google.maps.Map(document.getElementById(idHTMLtag), {
 		center: point,
-		zoom:12
+		zoom:12,zoomControl: false,
+        scaleControl: false,
+        scrollwheel: false,
+        disableDoubleClickZoom: true
 
 	});
 	markerPush(point)
@@ -40,8 +43,9 @@ function makeMap(selector, config) {
 }
 
 //functions finds the latitude and longitude of the cities passed in the array CityNames
-function citiesLntLng(cityNames){
-	cityNames.forEach(function(city){
+
+function citiesLntLng(cityOrEvent){
+	cityOrEvent.forEach(function(city){
  		var oneCity = city.replace(" ","+");
  		//Ajax request to find the lat & long of the array of cities that I am passing
 	 	$.get("https://maps.googleapis.com/maps/api/geocode/json?" , { "address" : oneCity}, function (response){
