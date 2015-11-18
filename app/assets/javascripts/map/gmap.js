@@ -11,16 +11,36 @@ $( document ).ready(function() {
 	$(".player").YTPlayer();
 });
  // ex: https://maps.googleapis.com/maps/api/geocode/xml?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_KEY
-function renderMap(loc, htmlTag){
-	
-	var address = loc.replace(" ","+") || "SanFrancisco";	
+function renderMap(locationEvent, htmlTag, addresses){
+	var loc;
+	var address;
+	if (!Array.isArray(addresses)){
+	loc = addresses;
+	console.log("it is not an array")
+	address = loc.replace(" ","+") || "SanFrancisco";	
 	$.get("https://maps.googleapis.com/maps/api/geocode/json?", { "address" : address}, function (data) {
 	ltlg = data.results[0].geometry.location;
 
    //function below needs to be called at the end of callback function
+   console.log("calling MakeCityEventMap")
 	MakeCityEventMap(ltlg, htmlTag);
 
 	});
+    }
+    else{
+    	loc = locationEvent;
+    	console.log("it is an ARRAY!")
+		address = loc.replace(" ","+") || "SanFrancisco";	
+		$.get("https://maps.googleapis.com/maps/api/geocode/json?", { "address" : address}, function (data) {
+		ltlg = data.results[0].geometry.location;
+
+	   //function below needs to be called at the end of callback function
+
+		console.log("calling makeMap")
+		makeMap(ltlg, htmlTag, addresses);
+		});
+        }
+
 }
 
 function MakeCityEventMap(point, idHTMLtag){
@@ -30,16 +50,19 @@ function MakeCityEventMap(point, idHTMLtag){
         scaleControl: false,
         scrollwheel: false,
         disableDoubleClickZoom: true
-
 	});
-	markerPush(point)
+	 markerPush(point);
 }
 
-function makeMap(selector, config) {
+function makeMap(config, selector, addresses) {
 	map = new google.maps.Map(document.getElementById(selector), {
-		center: config.center,
-		zoom: config.zoom || 10
+		center: config.center || config,
+		zoom: config.zoom || 12,
+		scaleControl: false,
+        scrollwheel: false,
+        disableDoubleClickZoom: true
 	});
+		citiesLntLng(addresses);
 }
 
 //functions finds the latitude and longitude of the cities passed in the array CityNames
@@ -65,17 +88,7 @@ function markerPush(latsNlongs){
 		});
 }
 
-// function locHandler () { 
-	// below is only good for an array
 
-//         var locArray = $('.act-loc').val().split(" ");
-//         var addr = locArray.join("+");
-//         $.get("https://maps.googleapis.com/maps/api/geocode/json?", { "address" : addr}, function (data) {
-//             LatLng = data.results[0].geometry.location;
-            
-//         getMap();
-//         })
-// }
 
 
 // function markerPush(cityNames) {
@@ -119,22 +132,4 @@ function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')), options);
 
 }
-
-// Bias the autocomplete object to the user's geographical location,
-// as supplied by the browser's 'navigator.geolocation' object.
-// function geolocate() {
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(function(position) {
-//       var geolocation = {
-//         lat: position.coords.latitude,
-//         lng: position.coords.longitude
-//       };
-//       var circle = new google.maps.Circle({
-//         center: geolocation,
-//         radius: position.coords.accuracy
-//       });
-//       autocomplete.setBounds(circle.getBounds());
-//     });
-//   }
-// }
 
