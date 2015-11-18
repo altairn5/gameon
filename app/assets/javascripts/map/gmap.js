@@ -88,34 +88,6 @@ function markerPush(latsNlongs){
 		});
 }
 
-
-
-
-// function markerPush(cityNames) {
-// 	var pinArr = cityNames;
-//    	console.log ("this is pin-loc", pinArr);
-// 	pinArr.forEach(function(el) {
-// 		link = el.name.replace(/\s/g, '-')
-// 		var marker = new google.maps.Marker({
-// 			position: el.LatLng,
-// 			map: map,
-// 			url: "http://localhost:3000/cities/" + link,
-// 			title: el.name
-// 		})
-// 		var info = createInfoWindow(el.description);
-// 		google.maps.event.addListener(marker, 'mouseover', function() {
-// 			info.open(map,marker);
-// 		});
-// 		google.maps.event.addListener(marker, 'mouseout', function() {
-// 			info.close(map,marker);
-// 		// });
-// 		google.maps.event.addListener(marker, 'click', function() {
-// 			window.location.href =  marker.url;
-// 		});
-// 		markers.push(marker)
-// 		console.log (markers);
-// 	});
-// };
 var defaultBounds; 
 defaultBounds = new google.maps.LatLngBounds(
 	new google.maps.LatLng(71.3867745,-66.9502861),
