@@ -35,6 +35,8 @@ gem 'underscore-rails'
 
 gem 'gmaps4rails'
 
+gem 'omniauth-facebook'
+
 gem "paperclip", "~> 4.3"
 # Use Unicorn as the app server
 # gem 'unicorn'
