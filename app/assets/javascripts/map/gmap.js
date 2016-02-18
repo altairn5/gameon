@@ -40,6 +40,8 @@ $( document ).ready(function() {
 });
 		}
 
+	}
+
 	function MakeCityEventMap(point, idHTMLtag){
 		map = new google.maps.Map(document.getElementById(idHTMLtag), {
 			center: point,
@@ -101,4 +103,3 @@ $( document ).ready(function() {
 	autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')), options);
 
 }
-
