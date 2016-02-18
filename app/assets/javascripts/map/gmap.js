@@ -26,7 +26,12 @@ function renderMap(loc, htmlTag){
 function MakeCityEventMap(point, idHTMLtag){
 	map = new google.maps.Map(document.getElementById(idHTMLtag), {
 		center: point,
+<<<<<<< HEAD
 		zoom:12,zoomControl: false,
+=======
+		zoom:12,
+		zoomControl: false,
+>>>>>>> develop
         scaleControl: false,
         scrollwheel: false,
         disableDoubleClickZoom: true
