@@ -1,4 +1,9 @@
 <div id="user-map"></div>
+<center>
+<% if flash[:notice] %>
+      <div class="alert alert-danger"><%= flash[:notice] %></div>
+<% end %>
+</center>
 <div class="container">
 <div class="page-container text-center">
   <%if current_user == @user%>
@@ -130,7 +135,9 @@
 </div>
 
 <script type="text/javascript">
-  var city = 'San Francisco';
-  renderMap(city,'user-map');
+  var city = '<%=@user.city.name%>';
+  var addresses = <%=raw @addresses%>;
+
+  renderMap(city,'user-map', addresses);
  </script>
 

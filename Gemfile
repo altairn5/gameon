@@ -31,6 +31,12 @@ gem 'ffaker'
 
 gem 'stream-ruby'
 
+gem 'underscore-rails'
+
+gem 'gmaps4rails'
+
+gem 'omniauth-facebook'
+
 gem "paperclip", "~> 4.3"
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -38,10 +44,18 @@ gem "paperclip", "~> 4.3"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'rails_12factor', group: :production
+
+#CODE BELOW WAS REMOVED AFTER PRODUCTION
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
+
+  # gem 'pry-rails'
+
   gem 'pry-rails'
+  gem 'dotenv-rails'
+
 end
 
 group :development do
@@ -52,4 +66,5 @@ group :development do
   gem 'spring'
 end
 
- 
+
+
