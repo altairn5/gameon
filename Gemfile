@@ -35,6 +35,8 @@ gem 'underscore-rails'
 
 gem 'gmaps4rails'
 
+gem 'omniauth-facebook'
+
 gem "paperclip", "~> 4.3"
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -64,3 +66,8 @@ group :development do
   gem 'spring'
 end
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> a2dc8bf26dc9b2a5bfb19dcf13633f8cbcc3c996
