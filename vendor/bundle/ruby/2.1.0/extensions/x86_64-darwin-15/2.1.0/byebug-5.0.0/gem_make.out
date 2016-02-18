@@ -1,0 +1,16 @@
+/Users/Humberto/.rvm/rubies/ruby-2.1.5/bin/ruby -r ./siteconf20151019-99036-37g1yx.rb extconf.rb
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.bundle
+
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.bundle ./.gem.20151019-99036-jghlrd/byebug
+installing default byebug libraries
