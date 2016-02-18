@@ -40,18 +40,6 @@ $( document ).ready(function() {
 });
 		}
 
-
-function MakeCityEventMap(point, idHTMLtag){
-	map = new google.maps.Map(document.getElementById(idHTMLtag), {
-		center: point,
-		zoom:12,
-		zoomControl: false,
-        scaleControl: false,
-        scrollwheel: false,
-        disableDoubleClickZoom: true
-
-	}
-	
 	function MakeCityEventMap(point, idHTMLtag){
 		map = new google.maps.Map(document.getElementById(idHTMLtag), {
 			center: point,
