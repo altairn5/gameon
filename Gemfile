@@ -66,8 +66,3 @@ group :development do
   gem 'spring'
 end
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> a2dc8bf26dc9b2a5bfb19dcf13633f8cbcc3c996
