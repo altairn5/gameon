@@ -8,6 +8,7 @@ var arrayOfCities = [];
 var placeSearch;
 var autocomplete;
 var defaultBounds; 
+var options;
 
 
 /*On page load function*/
@@ -75,7 +76,7 @@ function citiesLntLng(cityNames){
 			LatLng = response.results[0].geometry.location;
 			
 			markerPush(LatLng)
-			}
+			})
 		});
 
 }
@@ -84,28 +85,30 @@ function citiesLntLng(cityNames){
 
 function markerPush(latsNlongs){
 	var marker = new google.maps.Marker({
-	position: latsNlongs,
-	map: map
-	});
+		position: latsNlongs,
+		map: map
+		});
 }
 
 
 /*Google autocomplete implementation*/
 
-
 /*Create the autocomplete object, restricting the search to geographical*/
 
 defaultBounds = new google.maps.LatLngBounds(
-new google.maps.LatLng(71.3867745,-66.9502861),
-new google.maps.LatLng(18.9110642,172.4458955)
-);
+		new google.maps.LatLng(71.3867745,-66.9502861),
+		new google.maps.LatLng(18.9110642,172.4458955)
+		);
 
-var options = {
-bounds: defaultBounds
-};
+
+options = {
+	bounds: defaultBounds
+	};
+
+/*Autocomplete functions*/	
 
 function initAutocomplete() {
 
-autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')), options);
+	autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')), options);
 
 }
